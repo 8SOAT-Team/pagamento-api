@@ -1,0 +1,15 @@
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\bin\Debug\net8.0\Pagamento.Infrastructure.deps.json
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\bin\Debug\net8.0\Pagamento.Infrastructure.dll
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\bin\Debug\net8.0\Pagamento.Infrastructure.pdb
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.AssemblyInfo.cs
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.dll
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\refint\Pagamento.Infrastructure.dll
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.pdb
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\ref\Pagamento.Infrastructure.dll
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\bin\Debug\net8.0\Pagamento.Domain.dll
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\bin\Debug\net8.0\Pagamento.Domain.pdb
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagamento.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Infrastructure\obj\Debug\net8.0\Pagament.507A3589.Up2Date
