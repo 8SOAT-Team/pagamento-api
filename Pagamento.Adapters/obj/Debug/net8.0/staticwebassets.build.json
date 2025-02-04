@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "XSpmXJ9s0k5D+76O9WbhfjkTpceUrzkEiYmp17tSA4U=",
+  "Source": "Pagamento.Adapters",
+  "BasePath": "_content/Pagamento.Adapters",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj",
+      "Version": 2,
+      "Source": "Pagamento.Apps",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

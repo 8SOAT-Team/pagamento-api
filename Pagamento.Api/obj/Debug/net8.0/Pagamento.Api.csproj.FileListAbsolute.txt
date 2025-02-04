@@ -1,0 +1,7 @@
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.csproj.AssemblyReference.cache
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.AssemblyInfoInputs.cache
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.AssemblyInfo.cs
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.csproj.CoreCompileInputs.cache
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\FERNANDA\RiderProjects\Pagamento\Pagamento.Api\obj\Debug\net8.0\Pagamento.Api.MvcApplicationPartsAssemblyInfo.cache

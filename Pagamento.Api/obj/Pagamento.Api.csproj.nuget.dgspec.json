@@ -1,0 +1,465 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\Pagamento.Api.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\Pagamento.Adapters.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\Pagamento.Adapters.csproj",
+        "projectName": "Pagamento.Adapters",
+        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\Pagamento.Adapters.csproj",
+        "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj"
+              },
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.24, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\Pagamento.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\Pagamento.Api.csproj",
+        "projectName": "Pagamento.Api",
+        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\Pagamento.Api.csproj",
+        "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\Pagamento.Adapters.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\Pagamento.Adapters.csproj"
+              },
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj"
+              },
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Upstream\\Pagamento.Upstream.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Upstream\\Pagamento.Upstream.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CleanArch.UseCase": {
+              "target": "Package",
+              "version": "[1.0.9-beta-g0d3852eaa0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj",
+        "projectName": "Pagamento.Apps",
+        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj",
+        "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CleanArch.UseCase": {
+              "target": "Package",
+              "version": "[1.0.9-beta-g0d3852eaa0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj",
+        "projectName": "Pagamento.Domain",
+        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj",
+        "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
+        "projectName": "Pagamento.Infrastructure",
+        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Upstream\\Pagamento.Upstream.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Upstream\\Pagamento.Upstream.csproj",
+        "projectName": "Pagamento.Upstream",
+        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Upstream\\Pagamento.Upstream.csproj",
+        "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Upstream\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\Pagamento.Api.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Api\\Pagamento.Api.csproj"
+              },
+              "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj": {
+                "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CleanArch.UseCase": {
+              "target": "Package",
+              "version": "[1.0.18-beta-gfac92f9b14, )"
+            },
+            "mercadopago-sdk": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
