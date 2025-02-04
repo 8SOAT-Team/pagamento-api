@@ -1,0 +1,128 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "CleanArch.UseCase/1.0.9-beta-g0d3852eaa0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/CleanArch.UseCase.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/CleanArch.UseCase.dll": {}
+        }
+      },
+      "Pagamento.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Pagamento.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Pagamento.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CleanArch.UseCase/1.0.9-beta-g0d3852eaa0": {
+      "sha512": "ChzoMceuP7NdaQk4vUViXs1NMqa/3RNUTKfLJ8BA1+GgjPEKT2wLQjH9SAK5+4gFIdxx+a9b5GZY/RPSrVu2Ug==",
+      "type": "package",
+      "path": "cleanarch.usecase/1.0.9-beta-g0d3852eaa0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cleanarch.usecase.1.0.9-beta-g0d3852eaa0.nupkg.sha512",
+        "cleanarch.usecase.nuspec",
+        "lib/net8.0/CleanArch.UseCase.dll"
+      ]
+    },
+    "Pagamento.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Pagamento.Domain/Pagamento.Domain.csproj",
+      "msbuildProject": "../Pagamento.Domain/Pagamento.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "CleanArch.UseCase >= 1.0.9-beta-g0d3852eaa0",
+      "Pagamento.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\FERNANDA\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj",
+      "projectName": "Pagamento.Apps",
+      "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj",
+      "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+              "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "dependencies": {
+          "CleanArch.UseCase": {
+            "target": "Package",
+            "version": "[1.0.9-beta-g0d3852eaa0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
