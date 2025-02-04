@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ppy9krHJqMI=",
+  "dgSpecHash": "T61JKsUZFk0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Adapters\\Pagamento.Adapters.csproj",
+  "projectFilePath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Adapters\\Pagamento.Adapters.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FERNANDA\\.nuget\\packages\\cleanarch.usecase\\1.0.9-beta-g0d3852eaa0\\cleanarch.usecase.1.0.9-beta-g0d3852eaa0.nupkg.sha512",
     "C:\\Users\\FERNANDA\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",

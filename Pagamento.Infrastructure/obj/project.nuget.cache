@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nAwaurX9zxw=",
+  "dgSpecHash": "q05nWT5vRK8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FERNANDA\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",
     "C:\\Users\\FERNANDA\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.1\\microsoft.entityframeworkcore.abstractions.9.0.1.nupkg.sha512",

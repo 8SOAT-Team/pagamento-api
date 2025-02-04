@@ -697,11 +697,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
       "projectName": "Pagamento.Infrastructure",
-      "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Infrastructure\\Pagamento.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -719,8 +719,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
-              "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj"
+            "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+              "projectPath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\Pagamento.Domain.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {}
+    "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\Pagamento.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj": {
+    "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\Pagamento.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\Pagamento.Domain.csproj",
         "projectName": "Pagamento.Domain",
-        "projectPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\Pagamento.Domain.csproj",
+        "projectPath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\Pagamento.Domain.csproj",
         "packagesPath": "C:\\Users\\FERNANDA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Domain\\obj\\",
+        "outputPath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FERNANDA\\AppData\\Roaming\\NuGet\\NuGet.Config",
