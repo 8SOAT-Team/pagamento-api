@@ -1,5 +1,4 @@
 ﻿using CleanArch.UseCase;
-using CleanArch.UseCase.Logging;
 using CleanArch.UseCase.Faults;
 using CleanArch.UseCase.Options;
 using Pagamento.Domain.Entities;

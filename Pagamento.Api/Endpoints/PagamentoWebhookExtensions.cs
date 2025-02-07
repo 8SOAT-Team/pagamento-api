@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Pagamento.Adapters.Controllers;
-using Pagamento.Upstream.Pagamentos;
+using Pagamento.Configurations;
+using Pagamento.Infrastructure.Pagamentos;
 
 namespace Pagamento.Api.Endpoints;
 
@@ -22,7 +23,7 @@ public static class PagamentoWebhookExtensions
                 return Results.Ok();
             }
 
-            var result = await controller.ReceberWebhookPagamento(dataId);
+            var result = await controller.ReceberWebhookPagamento(dataId, EnvConfig.PagamentoFornecedorAccessToken);
 
             return result.GetResult();
         }).WithTags("Webhook")

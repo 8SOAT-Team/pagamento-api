@@ -1,11 +1,10 @@
 ﻿using CleanArch.UseCase.Faults;
-using CleanArch.UseCase.Logging;
 using Pagamento.Domain.Entities;
 using ILogger = CleanArch.UseCase.Logging.ILogger;
 
 namespace Pagamento.Apps.UseCases;
 
-public class ConfirmarStatusPagamentoUseCase(ILogger logger, 
+public class ConfirmarStatusPagamentoUseCase(string token, ILogger logger, 
     IFornecedorPagamentoGateway fornecedorPagamentoGateway,
     IPagamentoGateway pagamentoGateway) : UseCase<string, Domain.Entities.Pagamento>(logger)
 {
@@ -14,7 +13,7 @@ public class ConfirmarStatusPagamentoUseCase(ILogger logger,
 
     protected override async Task<Domain.Entities.Pagamento?> Execute(string pagamentoExternoId)
     {
-        var pagamentoExterno = await _fornecedorPagamentoGateway.ObterPagamento(pagamentoExternoId);
+        var pagamentoExterno = await _fornecedorPagamentoGateway.ObterPagamento(pagamentoExternoId, token);
 
         if (pagamentoExterno is null)
         {

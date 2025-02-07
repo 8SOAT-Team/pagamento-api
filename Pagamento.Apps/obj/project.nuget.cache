@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9ALPj+CV/H4=",
+  "dgSpecHash": "kTvEQQ1d9Rk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\FERNANDA\\Source\\Repos\\pagamento-api\\Pagamento.Apps\\Pagamento.Apps.csproj",
+  "projectFilePath": "C:\\Users\\FERNANDA\\RiderProjects\\Pagamento\\Pagamento.Apps\\Pagamento.Apps.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FERNANDA\\.nuget\\packages\\cleanarch.usecase\\1.0.9-beta-g0d3852eaa0\\cleanarch.usecase.1.0.9-beta-g0d3852eaa0.nupkg.sha512"
   ],

@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  pagamento-api:
+    image: ${DOCKER_REGISTRY-}pagamentoapi
+    build:
+      context: .
+      dockerfile: src/Pagamento.Api/Dockerfile
+    ports:
+      - '57398:57398'
+    environment: 
+        - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - sqlserver
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    hostname: 'sqlserver'
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: "tech#2024"
+    volumes:
+      - sql_data:/var/opt/mssql3
+    ports:
+      - '11433:1433'
+    expose:
+      - 1433
+  cache:
+    image: redis:8.0-M02-alpine3.20
+    container_name: pagamento-redis
+    volumes:
+      - /redis/redis-data
+    ports:
+      - "6379:6379"
+volumes:
+  sql_data:

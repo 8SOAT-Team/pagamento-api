@@ -8,11 +8,9 @@ namespace Pagamento.Apps.UseCases;
 
 public class ConfirmarPagamentoUseCase(
     ILogger logger,
-    IPagamentoGateway pagamentoGateway,
-    IPedidoGateway pedidoGateway) : UseCase<ConfirmarPagamentoDto, Domain.Entities.Pagamento>(logger)
+    IPagamentoGateway pagamentoGateway) : UseCase<ConfirmarPagamentoDto, Domain.Entities.Pagamento>(logger)
 {
     private readonly IPagamentoGateway _pagamentoGateway = pagamentoGateway;
-    private readonly IPedidoGateway _pedidoGateway = pedidoGateway;
 
     protected override async Task<Domain.Entities.Pagamento?> Execute(ConfirmarPagamentoDto dto)
     {
@@ -24,9 +22,7 @@ public class ConfirmarPagamentoUseCase(
             return null;
         }
 
-        var pedido = await _pedidoGateway.GetByIdAsync(pagamento.PedidoId);
-
-        if (pedido == null)
+        if (pagamento.PedidoId == Guid.Empty)
         {
             AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pedido não encontrado"));
             return null;
@@ -35,11 +31,11 @@ public class ConfirmarPagamentoUseCase(
         pagamento.FinalizarPagamento(dto.Status == StatusPagamento.Autorizado);
         var pagamentoAtualizado = await _pagamentoGateway.UpdatePagamentoAsync(pagamento);
 
-        if (pagamento.EstaAutorizado())
-        {
-            pedido.IniciarPreparo(pagamento);
-            await _pedidoGateway.UpdateAsync(pedido);
-        }
+        //if (pagamento.EstaAutorizado())
+        //{
+        //    pedido.IniciarPreparo(pagamento);
+        //    await _pedidoGateway.UpdateAsync(pedido);
+        //}
 
         return pagamentoAtualizado;
     }

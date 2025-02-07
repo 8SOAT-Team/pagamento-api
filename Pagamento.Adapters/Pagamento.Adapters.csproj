@@ -16,8 +16,8 @@
     </ItemGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\Pagamento.Apps\Pagamento.Apps.csproj" />
-        <ProjectReference Include="..\Pagamento.Infrastructure\Pagamento.Infrastructure.csproj" />
+      <ProjectReference Include="..\Pagamento.Apps\Pagamento.Apps.csproj" />
+      <ProjectReference Include="..\Pagamento.Infrastructure\Pagamento.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

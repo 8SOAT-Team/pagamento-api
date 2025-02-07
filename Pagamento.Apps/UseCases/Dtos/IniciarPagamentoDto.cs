@@ -2,4 +2,4 @@
 
 namespace Pagamento.Apps.UseCases.Dtos;
 
-public record IniciarPagamentoDto(Guid PedidoId, MetodoDePagamento MetodoDePagamento);
+public record IniciarPagamentoDto(Guid PedidoId, MetodoDePagamento MetodoDePagamento, decimal ValorTotal, string EmailPagador, string webhookUrl, string token);

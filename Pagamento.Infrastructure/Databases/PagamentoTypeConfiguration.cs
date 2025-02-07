@@ -16,6 +16,6 @@ internal class PagamentoTypeConfiguration : IEntityTypeConfiguration<Domain.Enti
         builder.Property(p => p.ValorTotal).HasPrecision(18, 2);
         builder.Property(p => p.PagamentoExternoId).IsRequired(false);
 
-        builder.HasOne(p => p.Pedido).WithOne(p => p.Pagamento).HasForeignKey<Domain.Entities.Pagamento>(p => p.PedidoId);
+        //builder.HasOne(p => p.Pedido).WithOne(p => p.Pagamento).HasForeignKey<Domain.Entities.Pagamento>(p => p.PedidoId);
     }
 }

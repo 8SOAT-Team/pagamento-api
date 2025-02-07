@@ -17,25 +17,23 @@ public sealed class Pagamento : Entity, IAggregateRoot
     private Pagamento() { }
 
     [JsonConstructor]
-    public Pagamento(Guid id, Guid pedidoId, Pedido pedido, MetodoDePagamento metodoDePagamento, decimal valorTotal, string? pagamentoExternoId)
+    public Pagamento(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal, string? pagamentoExternoId)
     {
-        ValidationDomain(id, pedido, metodoDePagamento, valorTotal);
+        ValidationDomain(id, pedidoId, metodoDePagamento, valorTotal);
 
         Id = id;
         PedidoId = pedidoId;
-        Pedido = pedido;
         MetodoDePagamento = metodoDePagamento;
         ValorTotal = valorTotal;
         PagamentoExternoId = pagamentoExternoId;
         Status = StatusPagamento.Pendente;
     }
 
-    public Pagamento(Pedido pedido, MetodoDePagamento metodoDePagamento, decimal valorTotal, string? pagamentoExternoId)
-    : this(Guid.NewGuid(), pedido.Id, pedido, metodoDePagamento, valorTotal, pagamentoExternoId) { }
+    public Pagamento(Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal, string? pagamentoExternoId)
+    : this(Guid.NewGuid(), pedidoId, metodoDePagamento, valorTotal, pagamentoExternoId) { }
 
     public Guid PedidoId { get; init; }
     public string? PagamentoExternoId { get; private set; }
-    public Pedido Pedido { get; init; } = null!;
     public StatusPagamento Status { get; private set; }
     public MetodoDePagamento MetodoDePagamento { get; init; }
     public decimal ValorTotal { get; init; }
@@ -55,10 +53,10 @@ public sealed class Pagamento : Entity, IAggregateRoot
         UrlPagamento = urlPagamento;
     }
 
-    private static void ValidationDomain(Guid id, Pedido pedido, MetodoDePagamento metodoDePagamento, decimal valorTotal)
+    private static void ValidationDomain(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal)
     {
         DomainExceptionValidation.When(id == Guid.Empty, "Id inválido");
-        DomainExceptionValidation.When(pedido is null || pedido.Id == Guid.Empty, "Pedido inválido");
+        DomainExceptionValidation.When(pedidoId == Guid.Empty, "Pedido inválido");
         DomainExceptionValidation.When(Enum.IsDefined(metodoDePagamento) is false, "Método de pagamento inválido");
         DomainExceptionValidation.When(valorTotal < 0, "Valor total inválido");
         DomainExceptionValidation.When(ValidationMetodoDePagamentoCartao(metodoDePagamento) is false, "Método de pagamento inválido");

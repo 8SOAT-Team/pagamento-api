@@ -6,38 +6,36 @@ namespace Pagamento.Apps.UseCases;
 
 public class IniciarPagamentoUseCase(
     ILogger logger,
-    IPedidoGateway pedidoGateway,
     IPagamentoGateway pagamentoGateway,
     IFornecedorPagamentoGateway fornecedorPagamentoGateway) : UseCase<IniciarPagamentoDto, Domain.Entities.Pagamento>(logger)
 {
-    private readonly IPedidoGateway _pedidoGateway = pedidoGateway;
     private readonly IPagamentoGateway _pagamentoGateway = pagamentoGateway;
     private readonly IFornecedorPagamentoGateway _fornecedorPagamentoGateway = fornecedorPagamentoGateway;
     protected override async Task<Domain.Entities.Pagamento?> Execute(IniciarPagamentoDto command)
     {
-        var pedido = await _pedidoGateway.GetPedidoCompletoAsync(command.PedidoId);
 
-        if (pedido is null)
+        if (command.PedidoId == Guid.Empty)
         {
             AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pedido não encontrado"));
             return null;
         }
 
-        if (pedido.Pagamento is not null)
+        var pagamento = _pagamentoGateway.FindPagamentoByPedidoIdAsync(command.PedidoId);
+        if (pagamento is not null)
         {
             AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pagamento já iniciado"));
             return null;
         }
 
-        pedido.IniciarPagamento(command.MetodoDePagamento);
+        Domain.Entities.Pagamento Pagamento = new Domain.Entities.Pagamento(command.PedidoId, command.MetodoDePagamento, command.ValorTotal, null);
 
-        var fornecedorResponse = await _fornecedorPagamentoGateway.IniciarPagamento(command.MetodoDePagamento, pedido.Cliente?.Email ?? "",
-            pedido.ValorTotal, pedido.Pagamento!.Id.ToString(), pedido.Id);
+        var fornecedorResponse = await _fornecedorPagamentoGateway.IniciarPagamento(command.MetodoDePagamento, command.EmailPagador ?? "",
+            command.ValorTotal, pagamento.Id.ToString(), command.PedidoId, command.webhookUrl, command.token);
 
-        pedido.Pagamento!.AssociarPagamentoExterno(fornecedorResponse.IdExterno, fornecedorResponse.UrlPagamento);
+        Pagamento.AssociarPagamentoExterno(fornecedorResponse.IdExterno, fornecedorResponse.UrlPagamento);
 
-        await _pedidoGateway.AtualizarPedidoPagamentoIniciadoAsync(pedido);
+        //await _pedidoGateway.AtualizarPedidoPagamentoIniciadoAsync(pedido);
 
-        return pedido.Pagamento;
+        return Pagamento;
     }
 }
