@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pagamento-dep
+  namespace: fast-order
+  labels:
+    app: pagamento-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pagamento-api
+  template:
+    metadata:
+      labels:
+        app: pagamento-api
+    spec:
+      containers:
+      - name: pagamento-api-cont
+        image: sickbanger/pagamento-api:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+        envFrom:
+          - configMapRef:
+              name: pagamento-api-configmap
+          - secretRef:
+              name: pagamento-api-secrets
+        env:
+          - name: DB_CONNECTION_STRING
+            valueFrom:
+              configMapKeyRef:
+                name: pagamento-api-configmap
+                key: DB_CONNECTION_STRING
+        livenessProbe:
+          httpGet:
+            path: /swagger
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /swagger
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"

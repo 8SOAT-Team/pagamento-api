@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pagamento-api-configmap
+  namespace: fast-order
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:8080"
+  DB_CONNECTION_STRING: "Server=rds-fastorderdb-tf.c3qig4kemrm8.us-east-1.rds.amazonaws.com,1433;Database=pagamentoDB;User Id=sa;Password=${DB_PASSWORD};Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;"
+  DISTRIBUTED_CACHE_URL: "soat-cache.uwgp5c.ng.0001.use1.cache.amazonaws.com:6379"
+  RUN_MIGRATIONS_ON_START: "true"
