@@ -17,7 +17,7 @@ public class PagamentoContext : DbContext
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
     public DbSet<ItemDoPedido> ItensDoPedido { get; set; }
-    public DbSet<Pagamento.Domain.Entities.Pagamento> Pagamentos { get; set; }
+    virtual public DbSet<Pagamento.Domain.Entities.Pagamento> Pagamentos { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 

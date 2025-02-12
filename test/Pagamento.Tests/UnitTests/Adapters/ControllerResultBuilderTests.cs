@@ -2,13 +2,7 @@
 using CleanArch.UseCase;
 using Moq;
 using Pagamento.Adapters.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CleanArch.UseCase.Options;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tests.UnitTests.Adapters;
 public class ControllerResultBuilderTests
@@ -63,13 +57,10 @@ public class ControllerResultBuilderTests
         // Arrange
         var mockResult = Any<string>.Some("Success");
         _mockUseCase.Setup(x => x.IsFailure).Returns(false);
-        _mockUseCase.Setup(x => x.GetErrors()).Returns(new[] { new UseCaseError(UseCaseErrorType.BadRequest, "Bad Request Error") });
-
+        _mockUseCase.Setup(x => x.GetErrors()).Returns(Array.Empty<UseCaseError>());
         var builder = ControllerResultBuilder<string, string>.ForUseCase(_mockUseCase.Object);
-
         // Act
-        var result = builder.WithInstance(Guid.NewGuid()).WithResult(mockResult).Build();
-
+        var result = builder.WithInstance("Success").Build();
         // Assert
         Assert.NotNull(result);
         Assert.Equal("Success", result.Value);
@@ -117,19 +108,16 @@ public class ControllerResultBuilderTests
 
     [Fact]
     public void Build_ShouldReturnEmptyResultWhenNoValueAndNoFailure()
-    {
-        // Arrange
-        var error = new UseCaseError(UseCaseErrorType.InternalError, "Internal Server Error");
+    {   // Arrange
         _mockUseCase.Setup(x => x.IsFailure).Returns(false);
-        _mockUseCase.Setup(x => x.GetErrors()).Returns(new[] { error });
-
+        _mockUseCase.Setup(x => x.GetErrors()).Returns(Array.Empty<UseCaseError>());
         var builder = ControllerResultBuilder<string, string>.ForUseCase(_mockUseCase.Object);
-
         // Act
         var result = builder.Build();
-
         // Assert
         Assert.NotNull(result);
+        Assert.True(result.IsSucceed);
+        Assert.Null(result.Value);
 
     }
 }

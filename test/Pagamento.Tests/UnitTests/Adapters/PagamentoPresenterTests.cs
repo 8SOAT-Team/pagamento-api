@@ -63,4 +63,27 @@ public class PagamentoPresenterTests
         Assert.Equal(pagamento.UrlPagamento, dtos.First().UrlPagamento);
 
     }
+
+    [Fact]
+    public void ToPagamento_DeveRetornarPagamento_Corretamente()
+    {
+        // Arrange
+        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
+        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
+        List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
+        listaItens.Add(itemPedido);
+        var pedido = new Pedido(Guid.NewGuid(), listaItens);
+        //Act
+        var pagamento = new Pagamento.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
+        pagamento.AssociarPagamentoExterno("ext123", "https://pagamento.com/ext123");
+        pagamento.FinalizarPagamento(true);
+        var dto = PagamentoPresenter.ToPagamentoDTO(pagamento);
+        // Act
+        var result = dto;
+        // Assert
+        Assert.Equal(pagamento.Id, result.Id);        
+        Assert.Equal(pagamento.ValorTotal, result.ValorTotal);
+        Assert.Equal(pagamento.PagamentoExternoId, result.PagamentoExternoId);
+        Assert.Equal(pagamento.UrlPagamento, result.UrlPagamento);
+    }
 }

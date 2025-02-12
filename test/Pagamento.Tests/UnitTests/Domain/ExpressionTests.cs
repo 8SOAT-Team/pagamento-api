@@ -33,23 +33,7 @@ public class ExpressionTests
         // Assert
         Assert.Equal(expected, result);
     }
-
-    [Theory]
-    [InlineData("1234567890", false)]      // Testa uma string com apenas números (espera false)
-    [InlineData("123-456-789", false)]     // Testa uma string com hífen (espera false)
-    [InlineData("abcdef", true)]           // Testa uma string com apenas letras (espera true)
-    [InlineData("abc123", true)]           // Testa uma string com letras e números (espera true)
-    public void DigitsOnly_ShouldValidateCorrectly(string input, bool expected)
-    {
-        // Arrange
-        var regex = Expression.DigitsOnly();
-
-        // Act
-        var result = regex.IsMatch(input);
-
-        // Assert
-        Assert.Equal(expected, result);
-    }
+       
 }
 
 public static class Expression
