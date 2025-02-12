@@ -35,10 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BDD\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Pagamento.Adapters\Pagamento.Adapters.csproj" />
     <ProjectReference Include="..\..\src\Pagamento.Api\Pagamento.Api.csproj" />
     <ProjectReference Include="..\..\src\Pagamento.Apps\Pagamento.Apps.csproj" />

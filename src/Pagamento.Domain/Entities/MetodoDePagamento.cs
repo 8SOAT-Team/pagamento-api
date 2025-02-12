@@ -7,4 +7,5 @@ public enum MetodoDePagamento
     Cartao = 1 << 2,
     Master = 1 << 3,
     Visa = 1 << 4,
+    NaoDefinido = 1 << 5
 }

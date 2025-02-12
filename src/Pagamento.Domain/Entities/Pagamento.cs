@@ -53,12 +53,13 @@ public class Pagamento : Entity, IAggregateRoot{
         UrlPagamento = urlPagamento;
     }
 
-    private static void ValidationDomain(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal)
+    private static void ValidationDomain(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal/*,string pagamentoExternoId*/)
     {
         DomainExceptionValidation.When(id == Guid.Empty, "Id inválido");
         DomainExceptionValidation.When(pedidoId == Guid.Empty, "Pedido inválido");
         DomainExceptionValidation.When(Enum.IsDefined(metodoDePagamento) is false, "Método de pagamento inválido");
         DomainExceptionValidation.When(valorTotal < 0, "Valor total inválido");
+        //DomainExceptionValidation.When(string.IsNullOrWhiteSpace(pagamentoExternoId), "Id externo não pode ser vazio ou nulo");
         DomainExceptionValidation.When(ValidationMetodoDePagamentoCartao(metodoDePagamento) is false, "Método de pagamento inválido");
     }
 

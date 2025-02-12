@@ -1,5 +1,4 @@
-﻿using IntegrationTests.Builder;
-using Pagamento.Adapters.Controllers;
+﻿using Pagamento.Adapters.Controllers;
 using Pagamento.Pagamento;
 using Pagamento.Tests.IntegrationTests.Builder;
 using Pagamento.Tests.IntegrationTests.HostTest;
@@ -17,37 +16,37 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
         _client = _factory.CreateClient();
     }
 
-    //[Fact]
-    //public async Task Post_IniciarPagamento_ReturnsCreated()
-    //{
-    //    // Arrange
-    //    var cliente = _factory.Context.Clientes.FirstOrDefault();
+    [Fact]
+    public async Task Post_IniciarPagamento_ReturnsCreated()
+    {
+        // Arrange
+        var cliente = _factory.Context.Clientes.FirstOrDefault();
 
-    //    if (cliente is null)
-    //    {
-    //        cliente = new ClienteBuilder().Build();
-    //        _factory.Context.Clientes.Add(cliente);
-    //        _factory.Context.SaveChanges();
-    //    }
+        if (cliente is null)
+        {
+            cliente = new ClienteBuilder().Build();
+            _factory.Context.Clientes.Add(cliente);
+            _factory.Context.SaveChanges();
+        }
 
 
-    //    var pedidoExistente = _factory.Context.Pedidos.FirstOrDefault();
-    //    if (pedidoExistente is null)
-    //    {
+        var pedidoExistente = _factory.Context.Pedidos.FirstOrDefault();
+        if (pedidoExistente is null)
+        {
 
-    //         pedidoExistente = new PedidoBuilder(cliente.Id).Build();
-    //        _factory.Context.Pedidos.Add(pedidoExistente);
-    //        _factory.Context.SaveChanges();
-    //    }
-    //    var pedidoId = pedidoExistente!.Id;
-    //    var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
+            pedidoExistente = new PedidoBuilder(cliente.Id).Build();
+            _factory.Context.Pedidos.Add(pedidoExistente);
+            _factory.Context.SaveChanges();
+        }
+        var pedidoId = pedidoExistente!.Id;
+        var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
 
-    //    // Act
-    //    var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
+        // Act
+        var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
 
-    //    // Assert
-    //    Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-    //}
+        // Assert
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+    }
 
     [Fact]
     public async Task Patch_ConfirmarPagamento_ReturnsOk()
@@ -127,6 +126,66 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Post_IniciarPagamento_ReturnsBadRequest()
+    {
+        // Arrange
+        var cliente = _factory.Context.Clientes.FirstOrDefault();
+        if (cliente is null)
+        {
+            cliente = new ClienteBuilder().Build();
+            _factory.Context.Clientes.Add(cliente);
+            _factory.Context.SaveChanges();
+        }
+        var pedidoExistente = _factory.Context.Pedidos.FirstOrDefault();
+        if (pedidoExistente is null)
+        {
+            pedidoExistente = new PedidoBuilder(cliente.Id).Build();
+            _factory.Context.Pedidos.Add(pedidoExistente);
+            _factory.Context.SaveChanges();
+        }
+        var pedidoId = pedidoExistente!.Id;
+        var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
+        // Act
+        var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
+        // Assert
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task Patch_ConfirmarPagamento_ReturnsBadRequest()
+    {
+        // Arrange
+        var cliente = _factory.Context.Clientes.FirstOrDefault();
+        if (cliente is null)
+        {
+            cliente = new ClienteBuilder().Build();
+            _factory.Context.Clientes.Add(cliente);
+            _factory.Context.SaveChanges();
+        }
+        var pedidoExistente = _factory.Context.Pedidos.FirstOrDefault();
+        if (pedidoExistente is null)
+        {
+            pedidoExistente = new PedidoBuilder(cliente.Id).Build();
+            _factory.Context.Pedidos.Add(pedidoExistente);
+            _factory.Context.SaveChanges();
+        }
+        var pagamentoExistente = _factory.Context.Pagamentos.FirstOrDefault();
+        if (pagamentoExistente is null)
+        {
+            var pedido = new PedidoBuilder(cliente.Id).Build();
+            pagamentoExistente = new PagamentoBuilder().ComPedido(pedidoExistente).Build();
+            _factory.Context.Pagamentos.Add(pagamentoExistente);
+            _factory.Context.SaveChanges();
+        }
+        var pagamentoId = pagamentoExistente.Id;
+        var request = new ConfirmarPagamentoDTO(StatusDoPagamento.Autorizado);
+        // Act
+        var response = await _client.PatchAsJsonAsync($"/pagamento/{pagamentoId}", request);
+        // Assert
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
 

@@ -1,15 +1,14 @@
 ﻿using Bogus;
 using Pagamento.Domain.Entities;
-using Pagamento.Tests.IntegrationTests.Builder;
 
-namespace IntegrationTests.Builder
+namespace Pagamento.Tests.IntegrationTests.Builder
 {
-    internal class PagamentoBuilder : Faker<Pagamento.Domain.Entities.Pagamento>
+    internal class PagamentoBuilder : Faker<Domain.Entities.Pagamento>
     {
         public PagamentoBuilder()
         {
             // Customizando a instância do Pagamento
-            CustomInstantiator(f => new Pagamento.Domain.Entities.Pagamento(
+            CustomInstantiator(f => new Domain.Entities.Pagamento(
                 pedidoId: new PedidoBuilder().Build().Id, // Usando o PedidoBuilder para gerar o pedido
                 metodoDePagamento: f.PickRandom<MetodoDePagamento>(), // Seleciona aleatoriamente um método de pagamento
                 valorTotal: f.Finance.Amount(1, 1000), // Gera um valor aleatório entre 1 e 1000
@@ -20,7 +19,7 @@ namespace IntegrationTests.Builder
         // Método para gerar uma instância de Pagamento com valores definidos
         public PagamentoBuilder ComPedido(Pedido pedido)
         {
-            CustomInstantiator(f => new Pagamento.Domain.Entities.Pagamento(
+            CustomInstantiator(f => new Domain.Entities.Pagamento(
                 pedidoId: pedido.Id,
                 metodoDePagamento: MetodoDePagamento.Master,
                 valorTotal: f.Finance.Amount(1, 1000),
@@ -32,7 +31,7 @@ namespace IntegrationTests.Builder
         // Método para definir um método de pagamento específico
         public PagamentoBuilder ComMetodoDePagamento(MetodoDePagamento metodoDePagamento)
         {
-            CustomInstantiator(f => new Pagamento.Domain.Entities.Pagamento(
+            CustomInstantiator(f => new Domain.Entities.Pagamento(
                 pedidoId: new PedidoBuilder().Build().Id,
                 metodoDePagamento: metodoDePagamento,
                 valorTotal: f.Finance.Amount(1, 1000),
@@ -44,7 +43,7 @@ namespace IntegrationTests.Builder
         // Método para definir um valor total específico
         public PagamentoBuilder ComValorTotal(decimal valorTotal)
         {
-            CustomInstantiator(f => new Pagamento.Domain.Entities.Pagamento(
+            CustomInstantiator(f => new Domain.Entities.Pagamento(
                 pedidoId: new PedidoBuilder().Build().Id,
                 metodoDePagamento: f.PickRandom<MetodoDePagamento>(),
                 valorTotal: valorTotal,
@@ -56,7 +55,7 @@ namespace IntegrationTests.Builder
         // Método para definir o status do pagamento
         public PagamentoBuilder ComStatus(StatusPagamento status)
         {
-            CustomInstantiator(f => new Pagamento.Domain.Entities.Pagamento(
+            CustomInstantiator(f => new Domain.Entities.Pagamento(
                 pedidoId: new PedidoBuilder().Build().Id,
                 metodoDePagamento: f.PickRandom<MetodoDePagamento>(),
                 valorTotal: f.Finance.Amount(1, 1000),
@@ -66,6 +65,6 @@ namespace IntegrationTests.Builder
         }
 
         // Método para gerar o pagamento
-        public Pagamento.Domain.Entities.Pagamento Build() => Generate();
+        public Domain.Entities.Pagamento Build() => Generate();
     }
 }
