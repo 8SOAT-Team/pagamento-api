@@ -1,6 +1,7 @@
 using Pagamentos.Adapters.DependencyInjection;
 using Pagamento.Endpoints;
 using Pagamento.Services;
+using Pagamentos.Api;
 using Pagamentos.Infrastructure.Configurations;
 using Pagamentos.Infrastructure.DependencyInjection;
 using Serilog;
@@ -16,7 +17,8 @@ builder.Services.AddUseCaseControllers()
     .AddGateways()
     .AddGatewayDePagamento()
     .AddDatabaseContext()
-    .AddCacheService();
+    .AddCacheService()
+    .ConfigureJsonSerialization();
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
