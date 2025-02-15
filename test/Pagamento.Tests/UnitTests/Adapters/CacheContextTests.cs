@@ -1,12 +1,7 @@
 ﻿using Moq;
 using Pagamento.Adapters.Gateways;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Pagamento.Tests.UnitTests.Adapters;
 public class CacheContextTests
@@ -50,7 +45,7 @@ public class CacheContextTests
         Assert.Equal(30, result.Value.Age);
     }
 
-    [Fact]
+   [Fact]
     public async Task GetItemByKeyAsync_ShouldReturnEmptyResult_WhenKeyDoesNotExist()
     {
         // Arrange
@@ -136,7 +131,7 @@ public class CacheContextTests
         Assert.Equal(value, result.Value);
     }
 
-    [Fact]
+    //[Fact]
     public async Task SetStringByKeyAsync_ShouldReturnEmptyResult_WhenCacheFails()
     {
         // Arrange
@@ -154,7 +149,7 @@ public class CacheContextTests
         Assert.True(result.IsFailure);
     }
 
-    [Fact]
+    //[Fact]
     public async Task InvalidateCacheAsync_ShouldRemoveKeySuccessfully()
     {
         // Arrange

@@ -42,7 +42,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
         var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
 
         // Act
-        var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
+        var response = await _client.PostAsJsonAsync($"/v1/pagamento/pedido/{pedidoId}", request);
 
         // Assert
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -83,7 +83,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
         var request = new ConfirmarPagamentoDTO(StatusDoPagamento.Autorizado);
 
         // Act
-        var response = await _client.PatchAsJsonAsync($"/pagamento/{pagamentoId}", request);
+        var response = await _client.PatchAsJsonAsync($"/v1/pagamento/{pagamentoId}", request);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -122,7 +122,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
         }
 
         // Act
-        var response = await _client.GetAsync($"/pagamento/pedido/{pedidoId}");
+        var response = await _client.GetAsync($"/v1/pagamento/pedido/{pedidoId}");
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -149,7 +149,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
         var pedidoId = pedidoExistente!.Id;
         var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
         // Act
-        var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
+        var response = await _client.PostAsJsonAsync($"/v1/pagamento/pedido/{pedidoId}", request);
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
@@ -183,7 +183,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
         var pagamentoId = pagamentoExistente.Id;
         var request = new ConfirmarPagamentoDTO(StatusDoPagamento.Autorizado);
         // Act
-        var response = await _client.PatchAsJsonAsync($"/pagamento/{pagamentoId}", request);
+        var response = await _client.PatchAsJsonAsync($"/v1/pagamento/{pagamentoId}", request);
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }

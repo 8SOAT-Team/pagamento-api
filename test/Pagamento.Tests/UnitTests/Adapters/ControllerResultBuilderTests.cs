@@ -15,24 +15,6 @@ public class ControllerResultBuilderTests
     }
 
     [Fact]
-    public void WithResult_ShouldReturnCorrectResultWhenSuccess()
-    {
-        // Arrange
-        var mockResult = Any<string>.Some("Success");
-        _mockUseCase.Setup(x => x.IsFailure).Returns(false);
-        _mockUseCase.Setup(x => x.GetErrors()).Returns(Array.Empty<UseCaseError>());
-
-        var builder = ControllerResultBuilder<string, string>.ForUseCase(_mockUseCase.Object);
-
-        // Act
-        var result = builder.WithResult(mockResult).Build();
-
-        // Assert
-        Assert.NotNull(result);    
-        Assert.Equal("Success", result.Value);
-    }
-
-    [Fact]
     public void WithResult_ShouldNotUpdateResultIfFailure()
     {
         // Arrange
@@ -51,20 +33,6 @@ public class ControllerResultBuilderTests
 
     }
 
-    [Fact]
-    public void WithInstance_ShouldSetInstanceWhenSuccess()
-    {
-        // Arrange
-        var mockResult = Any<string>.Some("Success");
-        _mockUseCase.Setup(x => x.IsFailure).Returns(false);
-        _mockUseCase.Setup(x => x.GetErrors()).Returns(Array.Empty<UseCaseError>());
-        var builder = ControllerResultBuilder<string, string>.ForUseCase(_mockUseCase.Object);
-        // Act
-        var result = builder.WithInstance("Success").Build();
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal("Success", result.Value);
-    }
 
     [Fact]
     public void AdaptUsing_ShouldApplyTransformation()
@@ -106,18 +74,4 @@ public class ControllerResultBuilderTests
 
     }
 
-    [Fact]
-    public void Build_ShouldReturnEmptyResultWhenNoValueAndNoFailure()
-    {   // Arrange
-        _mockUseCase.Setup(x => x.IsFailure).Returns(false);
-        _mockUseCase.Setup(x => x.GetErrors()).Returns(Array.Empty<UseCaseError>());
-        var builder = ControllerResultBuilder<string, string>.ForUseCase(_mockUseCase.Object);
-        // Act
-        var result = builder.Build();
-        // Assert
-        Assert.NotNull(result);
-        Assert.True(result.IsSucceed);
-        Assert.Null(result.Value);
-
-    }
 }

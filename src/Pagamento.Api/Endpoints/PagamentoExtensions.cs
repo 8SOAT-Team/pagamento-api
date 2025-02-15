@@ -47,6 +47,7 @@ public static class PagamentoExtensions
             [FromRoute] Guid pedidoId) =>
         {
             var useCaseResult = await pagamentoController.GetPagamentoByPedidoAsync(pedidoId);
+            Console.WriteLine("passei aqui");
             return useCaseResult.GetResult();
         }).WithTags(PagamentoTag)
         .WithSummary("Obtenha os dados de um pagamento pelo id do pedido.")
