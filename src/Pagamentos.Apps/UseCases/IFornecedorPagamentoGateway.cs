@@ -5,8 +5,7 @@ namespace Pagamentos.Apps.UseCases;
 
 public interface IFornecedorPagamentoGateway
 {
-    Task<FornecedorCriarPagamentoResponseDto> IniciarPagamento(MetodoDePagamento metodoDePagamento,
-        string emailPagador, decimal valorTotal, string referenciaExternaId, Guid pedidoId,
+    Task<FornecedorCriarPagamentoResponseDto> IniciarPagamento(IniciarPagamentoDto request,
         CancellationToken cancellationToken = default);
 
     Task<FornecedorGetPagamentoResponseDto?> ObterPagamento(string idExterno,

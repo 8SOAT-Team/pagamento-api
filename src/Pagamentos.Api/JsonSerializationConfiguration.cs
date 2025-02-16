@@ -10,7 +10,7 @@ public static class JsonSerializationConfiguration
         var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web)
         {
             MaxDepth = 16,
-            ReferenceHandler = ReferenceHandler.Preserve
+            ReferenceHandler = ReferenceHandler.IgnoreCycles
         };
 
         jsonOptions.Converters.Add(new JsonStringEnumConverter());

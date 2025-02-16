@@ -39,17 +39,15 @@ public class PagamentoController(
             .Build();
     }
 
-    public async Task<Result<PagamentoResponseDTO>> IniciarPagamento(Guid pedidoId,
-        MetodosDePagamento metodoDePagamento, decimal valorTotal, string emailPagador)
+    public async Task<Result<PagamentoResponseDTO>> IniciarPagamento(IniciarPagamentoDto iniciarPagamentoDto)
     {
         var useCase = new IniciarPagamentoUseCase(loggerFactory.CreateLogger<IniciarPagamentoUseCase>(),
             pagamentoGateway, fornecedorPagamentoGateway);
-        var useCaseResult = await useCase.ResolveAsync(new IniciarPagamentoDto(pedidoId,
-            (MetodoDePagamento)metodoDePagamento, valorTotal, emailPagador));
+        var useCaseResult = await useCase.ResolveAsync(iniciarPagamentoDto);
 
         return ControllerResultBuilder<PagamentoResponseDTO, Pagamento>
             .ForUseCase(useCase)
-            .WithInstance(pedidoId)
+            .WithInstance(iniciarPagamentoDto.PedidoId)
             .WithResult(useCaseResult)
             .AdaptUsing(PagamentoPresenter.ToPagamentoDto)
             .Build();

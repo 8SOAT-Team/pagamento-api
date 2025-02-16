@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Pagamentos.Adapters.Controllers;
 using Pagamentos.Adapters.Types;
 using Pagamento.Pagamento;
+using Pagamentos.Api.Pagamento;
+using Pagamentos.Apps.UseCases.Dtos;
+using Pagamentos.Domain.Entities;
 
 namespace Pagamento.Endpoints;
 
@@ -15,10 +18,27 @@ public static class PagamentoExtensions
         app.MapPost("/pagamento/pedido/{pedidoId:guid}", async (
                 [FromServices] IPagamentoController pagamentoController,
                 [FromRoute] Guid pedidoId,
-                [FromBody] NovoPagamentoDTO request) =>
+                [FromBody] NovoPagamentoRequest request) =>
             {
-                var useCaseResult = await pagamentoController.IniciarPagamento(pedidoId, request.MetodoDePagamento,
-                    request.ValorTotal, request.EmailPagador);
+                var useCaseResult = await pagamentoController.IniciarPagamento(new IniciarPagamentoDto()
+                {
+                    PedidoId = pedidoId,
+                    MetodoDePagamento = (MetodoDePagamento)request.MetodoDePagamento,
+                    Itens = request.Itens.Select(i => new IniciarPagamentoItemDto()
+                    {
+                        Id = i.Id,
+                        Descricao = i.Descricao,
+                        Titulo = i.Titulo,
+                        Quantidade = i.Quantidade,
+                        PrecoUnitario = i.PrecoUnitario
+                    }).ToList(),
+                    Pagador = new IniciarPagamentoPagadorDto()
+                    {
+                        Cpf = request.Pagador?.Cpf!,
+                        Email = request.Pagador?.Email!,
+                        Nome = request.Pagador?.Nome!,
+                    }
+                });
                 return useCaseResult.GetResult();
             }).WithTags(PagamentoTag)
             .WithSummary("Inicialize um pagamento de um pedido.")

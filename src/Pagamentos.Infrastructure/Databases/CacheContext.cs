@@ -5,7 +5,8 @@ using StackExchange.Redis;
 
 namespace Pagamentos.Infrastructure.Databases;
 
-public class CacheContext(IConnectionMultiplexer connectionMultiplexer, JsonSerializerOptions jsonOptions) : ICacheContext
+public class CacheContext(IConnectionMultiplexer connectionMultiplexer, JsonSerializerOptions jsonOptions)
+    : ICacheContext
 {
     private readonly IDatabase _database = connectionMultiplexer.GetDatabase();
 
@@ -17,12 +18,14 @@ public class CacheContext(IConnectionMultiplexer connectionMultiplexer, JsonSeri
         {
             return Result<T>.Empty();
         }
+
         var deserialized = item.ToString().TryDeserialize<T>(jsonOptions);
 
         return deserialized;
     }
 
-    public async Task<Result<T>> SetNotNullStringByKeyAsync<T>(string key, T value, int expireInSec = 3600)
+    public async Task<Result<T>> SetOnlyIfNotNullByKeyAsync<T>(string key, T? value, int expireInSec = 3600)
+        where T : class
     {
         if (value is null)
         {
@@ -36,7 +39,28 @@ public class CacheContext(IConnectionMultiplexer connectionMultiplexer, JsonSeri
             return Result<T>.Succeed(value);
         }
 
-        return Result<T>.Failure(new AppProblemDetails("Não foi possível gravar em cache", "internal_server_error", "Verifique os logs", key));
+        return Result<T>.Failure(new AppProblemDetails("Não foi possível gravar em cache", "internal_server_error",
+            "Verifique os logs", key));
+    }
+
+    public async Task<Result<ICollection<T>>> SetOnlyIfContainsItemByKeyAsync<T>(string key, ICollection<T> value,
+        int expireInSec = 3600) where T : class
+    {
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (value is null || value.Count == 0)
+        {
+            return Result<ICollection<T>>.Empty();
+        }
+
+        var result = await SetStringByKeyAsync(key, JsonSerializer.Serialize(value, jsonOptions), expireInSec);
+
+        if (result.IsSucceed)
+        {
+            return Result<ICollection<T>>.Succeed(value);
+        }
+
+        return Result<ICollection<T>>.Failure(new AppProblemDetails("Não foi possível gravar em cache",
+            "internal_server_error", "Verifique os logs", key));
     }
 
 

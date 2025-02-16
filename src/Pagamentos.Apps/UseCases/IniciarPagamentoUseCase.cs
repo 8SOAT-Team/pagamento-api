@@ -25,10 +25,12 @@ public class IniciarPagamentoUseCase(
             return null;
         }
 
-        var novoPagamento = new Pagamento(command.PedidoId, command.MetodoDePagamento, command.ValorTotal, null);
 
-        var fornecedorResponse = await fornecedorPagamentoGateway.IniciarPagamento(command.MetodoDePagamento,
-            command.EmailPagador, command.ValorTotal, novoPagamento.Id.ToString(), command.PedidoId);
+        var valorTotal = command.Itens.Sum(item => item.PrecoUnitario * item.Quantidade);
+        
+        var novoPagamento = new Pagamento(command.PedidoId, command.MetodoDePagamento, valorTotal, null);
+
+        var fornecedorResponse = await fornecedorPagamentoGateway.IniciarPagamento(command);
 
         novoPagamento.AssociarPagamentoExterno(fornecedorResponse.IdExterno, fornecedorResponse.UrlPagamento);
         novoPagamento = await pagamentoGateway.CreateAsync(novoPagamento);

@@ -35,7 +35,7 @@ public class PagamentoGatewayCache(IPagamentoGateway nextExecution, ICacheContex
         }
 
         var item = await nextExecution.FindPagamentoByPedidoIdAsync(pedidoId);
-        _ = await _cache.SetNotNullStringByKeyAsync(key, item);
+        _ = await _cache.SetOnlyIfContainsItemByKeyAsync(key, item);
 
         return item;
     }
@@ -53,7 +53,7 @@ public class PagamentoGatewayCache(IPagamentoGateway nextExecution, ICacheContex
         }
 
         var item = await nextExecution.GetByIdAsync(id);
-        _ = await _cache.SetNotNullStringByKeyAsync(key, item);
+        _ = await _cache.SetOnlyIfNotNullByKeyAsync(key, item);
 
         return item;
     }
@@ -66,7 +66,7 @@ public class PagamentoGatewayCache(IPagamentoGateway nextExecution, ICacheContex
         var (cacheKey, _) = CacheKeys[nameof(UpdatePagamentoAsync)];
         var key = $"{cacheKey}:{pagamento.Id}";
         await _cache.InvalidateCacheAsync(key);
-        await _cache.SetNotNullStringByKeyAsync(key, pagamentoAtualizado);
+        await _cache.SetOnlyIfNotNullByKeyAsync(key, pagamentoAtualizado);
 
         return pagamentoAtualizado;
     }
@@ -84,7 +84,7 @@ public class PagamentoGatewayCache(IPagamentoGateway nextExecution, ICacheContex
         }
 
         var item = await nextExecution.FindPagamentoByExternoIdAsync(externoId);
-        _ = await _cache.SetNotNullStringByKeyAsync(key, item);
+        _ = await _cache.SetOnlyIfNotNullByKeyAsync(key, item);
 
         return item;
     }
