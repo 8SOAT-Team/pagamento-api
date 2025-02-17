@@ -30,7 +30,6 @@ public class ConfirmarStatusPagamentoUseCase(ILogger<ConfirmarStatusPagamentoUse
             AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pagamento Externo não encontrado"));
             return null;
         }
-      
 
         if (pagamentoExterno.StatusPagamento == StatusPagamento.Pendente)
         {

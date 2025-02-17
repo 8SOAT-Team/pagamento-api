@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Pagamentos.Adapters.Controllers;
 using Pagamentos.Adapters.Types;
-using Pagamento.Pagamento;
 using Pagamentos.Api.Pagamento;
 using Pagamentos.Apps.UseCases.Dtos;
 using Pagamentos.Domain.Entities;
 
-namespace Pagamento.Endpoints;
+namespace Pagamentos.Api.Endpoints;
 
 public static class PagamentoExtensions
 {
@@ -56,7 +55,7 @@ public static class PagamentoExtensions
                 return useCaseResult.GetResult();
             }).WithTags(PagamentoTag)
             .WithSummary("Confirma o pagamento de um pedido pelo id do pagamento.")
-            .Produces<PagamentoResponseDTO>((int)HttpStatusCode.OK)
+            .Produces<PagamentoResponseDTO>()
             .Produces<AppBadRequestProblemDetails>((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.NotFound)
             .WithOpenApi();

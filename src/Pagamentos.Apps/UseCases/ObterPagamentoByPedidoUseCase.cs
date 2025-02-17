@@ -8,6 +8,6 @@ public class ObterPagamentoByPedidoUseCase(
     protected override async Task<List<Domain.Entities.Pagamento>?> Execute(Guid pedidoId)
     {
         var pagamentos = await pagamentoGateway.FindPagamentoByPedidoIdAsync(pedidoId);
-        return pagamentos?.Count > 0 ? pagamentos : null;
+        return pagamentos.Count > 0 ? pagamentos : null;
     }
 }

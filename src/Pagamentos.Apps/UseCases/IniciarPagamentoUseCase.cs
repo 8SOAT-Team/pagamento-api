@@ -14,7 +14,7 @@ public class IniciarPagamentoUseCase(
     {
         if (command.PedidoId == Guid.Empty)
         {
-            AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pedido não encontrado"));
+            AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pedido inválido"));
             return null;
         }
 
@@ -24,7 +24,6 @@ public class IniciarPagamentoUseCase(
             AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pagamento já iniciado"));
             return null;
         }
-
 
         var valorTotal = command.Itens.Sum(item => item.PrecoUnitario * item.Quantidade);
         

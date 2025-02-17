@@ -2,7 +2,7 @@
 using Pagamentos.Infrastructure.Databases;
 using Serilog;
 
-namespace Pagamento.Services;
+namespace Pagamentos.Api.Services;
 
 public static class MigracoesPendentes
 {

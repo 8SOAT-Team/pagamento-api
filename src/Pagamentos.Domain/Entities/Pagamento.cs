@@ -60,7 +60,6 @@ public class Pagamento : Entity, IAggregateRoot{
         DomainExceptionValidation.When(pedidoId == Guid.Empty, "Pedido inválido");
         DomainExceptionValidation.When(Enum.IsDefined(metodoDePagamento) is false, "Método de pagamento inválido");
         DomainExceptionValidation.When(valorTotal < 0, "Valor total inválido");
-        //DomainExceptionValidation.When(string.IsNullOrWhiteSpace(pagamentoExternoId), "Id externo não pode ser vazio ou nulo");
         DomainExceptionValidation.When(ValidationMetodoDePagamentoCartao(metodoDePagamento) is false, "Método de pagamento inválido");
     }
 

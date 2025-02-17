@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Pagamentos.Domain.Entities;
 
-namespace Pagamento.Pagamento;
+namespace Pagamentos.Api.Pagamento;
 
 public record PagamentoDTO
 {

@@ -1,6 +1,6 @@
 ﻿using Pagamentos.Adapters.Types;
 
-namespace Pagamento.Endpoints;
+namespace Pagamentos.Api.Endpoints;
 
 public static class ResultExtension
 {

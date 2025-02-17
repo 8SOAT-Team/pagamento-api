@@ -1,7 +1,7 @@
 ﻿using Pagamentos.Adapters.Controllers;
-using Pagamento.Pagamento;
 using System.Net;
 using System.Net.Http.Json;
+using Pagamentos.Api.Pagamento;
 using Pagamentos.Tests.IntegrationTests.Builder;
 using Pagamentos.Tests.IntegrationTests.HostTest;
 
@@ -39,7 +39,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
             _factory.Context.SaveChanges();
         }
         var pedidoId = pedidoExistente!.Id;
-        var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
+        var request = new NovoPagamentoRequest { MetodoDePagamento = MetodosDePagamento.Master };
 
         // Act
         var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
@@ -147,7 +147,7 @@ public class FastOrder_PagamentoExtensionsTest : IClassFixture<FastOrderWebAppli
             _factory.Context.SaveChanges();
         }
         var pedidoId = pedidoExistente!.Id;
-        var request = new NovoPagamentoDTO { MetodoDePagamento = MetodosDePagamento.Master };
+        var request = new NovoPagamentoRequest { MetodoDePagamento = MetodosDePagamento.Master };
         // Act
         var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
         // Assert

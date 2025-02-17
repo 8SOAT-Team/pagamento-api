@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Pagamentos.Adapters.Controllers;
-using Pagamentos.Infrastructure.Configurations;
 using Pagamentos.Infrastructure.Pagamentos;
 
-namespace Pagamento.Endpoints;
+namespace Pagamentos.Api.Endpoints;
 
 public static class PagamentoWebhookExtensions
 {

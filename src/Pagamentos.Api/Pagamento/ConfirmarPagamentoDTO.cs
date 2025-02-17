@@ -1,6 +1,6 @@
 ﻿using Pagamentos.Adapters.Controllers;
 
-namespace Pagamento.Pagamento
+namespace Pagamentos.Api.Pagamento
 {
     public record ConfirmarPagamentoDTO(StatusDoPagamento Status);
 }

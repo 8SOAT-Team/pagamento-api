@@ -18,20 +18,8 @@ public class ConfirmarPagamentoUseCase(
             return null;
         }
 
-        if (pagamento.PedidoId == Guid.Empty)
-        {
-            AddError(new UseCaseError(UseCaseErrorType.BadRequest, "Pedido não encontrado"));
-            return null;
-        }
-
         pagamento.FinalizarPagamento(dto.Status == StatusPagamento.Autorizado);
         var pagamentoAtualizado = await pagamentoGateway.UpdatePagamentoAsync(pagamento);
-
-        //if (pagamento.EstaAutorizado())
-        //{
-        //    pedido.IniciarPreparo(pagamento);
-        //    await _pedidoGateway.UpdateAsync(pedido);
-        //}
 
         return pagamentoAtualizado;
     }
