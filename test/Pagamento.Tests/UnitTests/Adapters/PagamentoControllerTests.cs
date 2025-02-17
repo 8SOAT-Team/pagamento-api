@@ -1,14 +1,9 @@
 ﻿using Moq;
-using Xunit;
 using Pagamento.Adapters.Controllers;
-using Pagamento.Adapters.Presenters;
 using Pagamento.Apps.UseCases;
 using Pagamento.Apps.UseCases.Dtos;
 using Pagamento.Domain.Entities;
 using CleanArch.UseCase.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Pagamento.Adapters.Types;
 using CleanArch.UseCase.Options;
 
