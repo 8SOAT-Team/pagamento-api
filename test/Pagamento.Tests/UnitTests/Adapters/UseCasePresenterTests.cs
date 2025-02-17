@@ -8,7 +8,7 @@ public class UseCasePresenterTests
     public void AdaptUseCaseError_ShouldReturnAppProblemDetails()
     {
         // Arrange
-        var useCaseError = new UseCaseError(UseCaseErrorType.BadRequest, "Erro de teste");
+        var useCaseError = new UseCaseError(UseCaseErrorType.BadRequest, "Erro ao executar caso de uso TesteUseCase");
         string title = "Erro de Validação";
         string useCaseName = "TesteUseCase";
         string entityId = "123";

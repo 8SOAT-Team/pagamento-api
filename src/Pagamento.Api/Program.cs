@@ -1,3 +1,4 @@
+using Pagamento.Adapters.Controllers;
 using Pagamento.Configurations;
 using Pagamento.Endpoints;
 using Pagamento.Services;
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IPagamentoController, PagamentoController>();
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
