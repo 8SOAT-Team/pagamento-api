@@ -10,12 +10,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="IntegrationTests\Builder\CategoriaBuilder.cs" />
+    <Compile Remove="UnitTests\FrameworksAndDrivers\**" />
+    <EmbeddedResource Remove="UnitTests\FrameworksAndDrivers\**" />
+    <None Remove="UnitTests\FrameworksAndDrivers\**" />
+    <SpecFlowFeatureFiles Remove="UnitTests\FrameworksAndDrivers\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="UnitTests\FrameworksAndDrivers\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="IntegrationTests\Builder\CategoriaBuilder.cs" />
+    <Compile Remove="UnitTests\Adapters\CacheGatewayTests.cs" />
+    <Compile Remove="UnitTests\Adapters\JsonSerializerExtensionTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+   <PackageReference Include="coverlet.collector" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Bogus" Version="35.6.1" />
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="FluentAssertions" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.72" />

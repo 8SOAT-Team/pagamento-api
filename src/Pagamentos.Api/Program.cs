@@ -1,3 +1,4 @@
+using Pagamento.Adapters.Controllers;
 using Pagamentos.Adapters.DependencyInjection;
 using Pagamentos.Api;
 using Pagamentos.Api.Endpoints;
