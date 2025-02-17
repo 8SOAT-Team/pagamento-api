@@ -1,105 +1,64 @@
-﻿using Pagamentos.Domain.Entities;
+﻿using Bogus;
+using Pagamentos.Domain.Entities;
 using Pagamentos.Domain.Exceptions;
 
-namespace Tests.UnitTests.Domain.Entities
+namespace Pagamentos.Tests.UnitTests.Domain.Entities;
+
+public sealed class PagamentoTest
 {
-    public class PagamentoTest
+    private readonly Faker _faker = new();
+
+    [Fact]
+    public void Construtor_NaoInformadoId_InformadoPedidoIdEOutrosDados_Deve_CriarEAtribuirValores()
     {
-        [Fact]
-        public void DeveCriarNovoPagamentoComSucesso()
-        {
-            //Arrange
-            var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-            var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-            List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-            listaItens.Add(itemPedido);
+        //Arrange
+        var pedidoId = _faker.Random.Guid();
+        //Act
+        var pagamento = new Pagamento(pedidoId, MetodoDePagamento.Pix, 100m, "idExterno");
 
-            var pedido = new Pedido(Guid.NewGuid(), listaItens);
+        //Assert
+        Assert.NotNull(pagamento);
+    }
 
-            //Act
-            var pagamento = new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
-            //Assert
-            Assert.NotNull(pagamento);
-        }
+    [Fact]
+    public void DeveLancarExceptionQuandoPagamentoIdInvalido()
+    {
+        //Act
+        var act = () =>
+            new Pagamento(Guid.Empty, MetodoDePagamento.Pix, 100m, "idExterno");
 
-        [Fact]
-        public void DeveLancarExcepetionQuandoPagamentoIdInvalido()
-        {
-            //Arrange
-            var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-            var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-            List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-            listaItens.Add(itemPedido);
+        //Assert
+        Assert.Throws<DomainExceptionValidation>(() => act());
+    }
 
-            var pedido = new Pedido(Guid.NewGuid(), listaItens);
+    [Fact]
+    public void DeveLancarExceptionQuandoValorInvalido()
+    {
+        //Act
+        var act = () =>
+            new Pagamento(Guid.NewGuid(), MetodoDePagamento.Pix, -1m, "idExterno");
+        //Assert
+        Assert.Throws<DomainExceptionValidation>(() => act());
+    }
 
-            //Act
-            Action act = () => new global::Pagamentos.Domain.Entities.Pagamento(Guid.Empty, MetodoDePagamento.Pix, 100m, "idExterno");
-            //Assert
-            Assert.Throws<DomainExceptionValidation>(() => act());
-        }
+    [Fact]
+    public void DeveLancarExcepetionQuandoMetodoDePagamentoInvalido()
+    {
+        //Act
+        var act = () =>
+            new Pagamento(Guid.NewGuid(), (MetodoDePagamento)999, 100m, "idExterno");
+        //Assert
+        Assert.ThrowsAny<DomainExceptionValidation>(() => act());
+    }
 
-        [Fact]
-        public void DeveLancarExcepetionQuandoValorInvalido()
-        {
-            //Arrange
-            var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-            var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-            List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-            listaItens.Add(itemPedido);
-
-            var pedido = new Pedido(Guid.NewGuid(), listaItens);
-
-            //Act
-            Action act = () => new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, -1m, "idExterno");
-            //Assert
-            Assert.Throws<DomainExceptionValidation>(() => act());
-        }
-
-        [Fact]
-        public void DeveLancarExcepetionQuandoMetodoDePagamentoInvalido()
-        {
-            //Arrange
-            var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-            var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-            List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-            listaItens.Add(itemPedido);
-            var pedido = new Pedido(Guid.NewGuid(), listaItens);
-            //Act
-            Action act = () => new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id, (MetodoDePagamento)999, 100m, "idExterno");
-            //Assert
-            Assert.ThrowsAny<DomainExceptionValidation>(() => act());
-        }
-        [Fact]
-        public void DeveLancarExcepetionQuandoIdExternoInvalido()
-        {
-            //Arrange
-            var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-            var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-            List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-            listaItens.Add(itemPedido);
-            var pedido = new Pedido(Guid.NewGuid(), listaItens);
-            //Act
-            Action act = () => new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, string.Empty);
-            //Assert
-            Assert.NotNull(act);
-        }
-        [Fact]
-        public void DeveLancarExcepetionQuandoPedidoIdInvalido()
-        {
-            //Arrange
-            var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-            var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-            List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-            listaItens.Add(itemPedido);
-            var pedido = new Pedido(Guid.NewGuid(), listaItens);
-            //Act
-            Action act = () => new global::Pagamentos.Domain.Entities.Pagamento(Guid.Empty, MetodoDePagamento.Pix, 100m, "idExterno");
-            //Assert
-            Assert.Throws<DomainExceptionValidation>(() => act());
-        }
-
-
-
+    [Fact]
+    public void DeveLancarExceptionQuandoPedidoIdInvalido()
+    {
+        //Act
+        var act = () =>
+            new Pagamento(Guid.Empty, Guid.NewGuid(), MetodoDePagamento.Pix, 100m,
+                "idExterno");
+        //Assert
+        Assert.Throws<DomainExceptionValidation>(() => act());
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Bogus;
+using Pagamentos.Api.Pagamento;
 using Pagamentos.Domain.Entities;
-using Pagamento.Pagamento;
 
 namespace Pagamentos.Tests.IntegrationTests.Builder
 {

@@ -81,7 +81,7 @@ public class CacheContextTests
             .ReturnsAsync(true);
 
         // Act
-        var result = await _cacheContext.SetNotNullStringByKeyAsync(key, value);
+        var result = await _cacheContext.SetOnlyIfNotNullByKeyAsync(key, value);
 
         // Assert
         Assert.True(result.IsSucceed);
@@ -92,7 +92,7 @@ public class CacheContextTests
     public async Task SetNotNullStringByKeyAsync_ShouldReturnEmptyResult_WhenValueIsNull()
     {
         // Act
-        var result = await _cacheContext.SetNotNullStringByKeyAsync<object>("test-key", null);
+        var result = await _cacheContext.SetOnlyIfNotNullByKeyAsync<object>("test-key", null);
 
         // Assert
         Assert.True(result.IsFailure);
@@ -111,11 +111,10 @@ public class CacheContextTests
             .ReturnsAsync(false); // Falha ao salvar
 
         // Act
-        var result = await _cacheContext.SetNotNullStringByKeyAsync(key, value);
+        var result = await _cacheContext.SetOnlyIfNotNullByKeyAsync(key, value);
 
         // Assert
         Assert.True(result.IsFailure);
-        
     }
 
     [Fact]

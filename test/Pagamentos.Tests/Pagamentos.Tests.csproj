@@ -42,4 +42,9 @@
     <ProjectReference Include="..\..\src\Pagamentos.Infrastructure\Pagamentos.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BDD\Feature\" />
+    <Folder Include="BDD\Step\" />
+  </ItemGroup>
+
 </Project>

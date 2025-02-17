@@ -30,9 +30,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9618b77e-8885-4441-9d16-6f591e38582e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Pagamentos.Api/JsonSerializationConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoDTOBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoDTOBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/Pagamentos.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/Pagamentos.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoPresenterTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoPresenterTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Entities/PagamentoTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Entities/PagamentoTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +64,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/596acbbf19634033ab5b90a3b714c3563c00/30/b8d24ab1/AnyExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/596acbbf19634033ab5b90a3b714c3563c00/37/5b4b3442/UseCaseBase`3.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/69c8b1140ef24cccba5670e39605f8f1208b0/3f/4f28538c/EndpointMetadataApiExplorerServiceCollectionExtens.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/81427bb79ca4dd8b7472ec794faaa3c413e68ebdba20182846a49537f18fca64/SwaggerGenServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce37be1a06b16c6faa02038d2cc477dd3bca5b217ceeb41c5f2ad45c1bf9/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -75,6 +91,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;.NET Launch Settings Profile.Pagamento: http.executor&quot;: &quot;Debug&quot;,
+    &quot;50d97d2d-ddad-4a5c-aa9d-cc6838aa9546.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;fix/project-issues&quot;,
@@ -106,7 +123,7 @@
     <configuration name="Pagamento: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/Pagamentos.Api/Pagamentos.Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -137,6 +154,21 @@
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/Pagamentos.Adapters/Pagamentos.Adapters.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
       <option name="LAUNCH_PROFILE_NAME" value="Pagamento.Adapters" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="Pagamentos.Api: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/Pagamentos.Api/Pagamentos.Api.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -212,6 +244,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue=".NET Launch Settings Profile.Pagamentos.Api: IIS Express" />
       <item itemvalue=".NET Launch Settings Profile.Pagamentos.Adapters: Pagamento.Adapters" />
       <item itemvalue=".NET Launch Settings Profile.Pagamentos.Api: http" />
       <item itemvalue=".NET Launch Settings Profile.Pagamentos.Api: https" />
@@ -233,6 +266,8 @@
       <workItem from="1738622752640" duration="11400000" />
       <workItem from="1739625314831" duration="6561000" />
       <workItem from="1739634946411" duration="672000" />
+      <workItem from="1739721347225" duration="347000" />
+      <workItem from="1739721725496" duration="15539000" />
     </task>
     <servers />
   </component>

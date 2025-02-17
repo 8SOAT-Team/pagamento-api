@@ -1,92 +1,55 @@
-﻿using Moq;
-using CleanArch.UseCase.Logging;
+﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Pagamentos.Apps.UseCases;
-using Pagamentos.Domain.Entities;
+using Pagamentos.Tests.IntegrationTests.Builder;
 
+namespace Pagamentos.Tests.UnitTests.Domain.Pagamentos;
 
-namespace Tests.UnitTests.Domain.Pagamentos;
 public class ObterPagamentoByPedidoUseCaseTest
 {
-    private readonly Mock<ILogger> _mockLogger;
     private readonly Mock<IPagamentoGateway> _mockPagamentoGateway;
-    private readonly ObterPagamentoByPedidoUseCaseTests _useCase;
+    private readonly ObterPagamentoByPedidoUseCase _useCase;
 
     public ObterPagamentoByPedidoUseCaseTest()
     {
-        _mockLogger = new Mock<ILogger>();
         _mockPagamentoGateway = new Mock<IPagamentoGateway>();
-        _useCase = new ObterPagamentoByPedidoUseCaseTests(_mockLogger.Object, _mockPagamentoGateway.Object);
+        _useCase = new ObterPagamentoByPedidoUseCase(new Mock<ILogger<ObterPagamentoByPedidoUseCase>>().Object,
+            _mockPagamentoGateway.Object);
     }
 
     [Fact]
     public async Task Execute_DeveRetornarPagamentosQuandoEncontrarPagamentos()
     {
         // Arrange
-        var pedidoId = Guid.NewGuid();
-        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-        List<ItemDoPedido> listaItens = new List<ItemDoPedido> { itemPedido };
-        var pedido = new Pedido(pedidoId, Guid.NewGuid(), listaItens);
-        var pagamentos = new List<global::Pagamentos.Domain.Entities.Pagamento>
-            {
-                new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id,MetodoDePagamento.Pix, 100.0m, "idExterno"),
-                new global::Pagamentos.Domain.Entities.Pagamento( pedido.Id,MetodoDePagamento.Pix, 50.0m, "idExterno")
-            };
+        var pagamento = PagamentoBuilder.Build();
 
-        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(pedidoId))
-            .ReturnsAsync(pagamentos);
+        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(pagamento.Id))
+            .ReturnsAsync([pagamento]);
 
         // Act
-        var result = await _useCase.Execute(pedidoId);
+        var result = await _useCase.ResolveAsync(pagamento.PedidoId);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.Equal(2, result.Count);
-        Assert.Equal(100.0m, result[0].ValorTotal);
-        Assert.Equal(50.0m, result[1].ValorTotal);
+        result.Should().NotBeNull();
+        result.HasValue.Should().BeTrue();
+        result.Value.Should().HaveCount(1);
+        result.Value.Should().ContainSingle(p => p.Id == pagamento.Id);
     }
 
     [Fact]
     public async Task Execute_DeveRetornarNullQuandoNaoEncontrarPagamentos()
     {
         // Arrange
-        var pedidoId = Guid.NewGuid();
-        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(pedidoId))
-            .ReturnsAsync(new List<global::Pagamentos.Domain.Entities.Pagamento>());
+        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(It.IsAny<Guid>()))
+            .ReturnsAsync([]);
 
         // Act
-        var result = await _useCase.Execute(pedidoId);
+        var result = await _useCase.ResolveAsync(Guid.NewGuid());
 
         // Assert
-        Assert.Null(result);
+        result.Should().NotBeNull();
+        result.HasValue.Should().BeFalse();
+        result.Value.Should().BeNull();
     }
-
-    [Fact]
-    public async Task Execute_DeveRetornarNullQuandoGatewayRetornarNull()
-    {
-        // Arrange
-        var pedidoId = Guid.NewGuid();
-        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(pedidoId))
-            .ReturnsAsync((List<global::Pagamentos.Domain.Entities.Pagamento>?)null);
-
-        // Act
-        var result = await _useCase.Execute(pedidoId);
-
-        // Assert
-        Assert.Null(result);
-    }
-
-}
-
-
-public class ObterPagamentoByPedidoUseCaseTests : ObterPagamentoByPedidoUseCase
-{
-    public ObterPagamentoByPedidoUseCaseTests(ILogger logger, IPagamentoGateway pagamentoGateway)
-        : base(logger, pagamentoGateway) { }
-
-    public new Task<List<global::Pagamentos.Domain.Entities.Pagamento>?> Execute(Guid pedidoId)
-    {
-        return base.Execute(pedidoId);
-    }
-
 }

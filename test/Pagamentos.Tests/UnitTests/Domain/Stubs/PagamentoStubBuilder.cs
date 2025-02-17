@@ -1,16 +1,13 @@
 ﻿using Bogus;
 using Pagamentos.Domain.Entities;
-using Pagamentos.Tests.UnitTests.Domain.Stubs.Pedidos;
 
+namespace Pagamentos.Tests.UnitTests.Domain.Stubs;
 
-namespace Tests.UnitTests.Domain.Stubs.Pedidos;
-
-internal sealed class PagamentoStubBuilder : Faker<global::Pagamentos.Domain.Entities.Pagamento>
+internal sealed class PagamentoStubBuilder : Faker<Pagamento>
 {
     private PagamentoStubBuilder()
     {
-        var pedido = PedidoStubBuilder.Create();
-        CustomInstantiator(f => new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id,
+        CustomInstantiator(f => new Pagamento(f.Random.Guid(),
             MetodoDePagamento.Pix, f.Random.Decimal(1, 1000), f.Random.Guid().ToString()));
     }
 
@@ -21,9 +18,9 @@ internal sealed class PagamentoStubBuilder : Faker<global::Pagamentos.Domain.Ent
     }
 
     public static PagamentoStubBuilder NewBuilder() => new();
-    public static global::Pagamentos.Domain.Entities.Pagamento Create() => new PagamentoStubBuilder().Generate();
-    public static List<global::Pagamentos.Domain.Entities.Pagamento> CreateMany(int qty) => new PagamentoStubBuilder().Generate(qty);
-    public static global::Pagamentos.Domain.Entities.Pagamento Autorizado() => NewBuilder().WithStatus(StatusPagamento.Autorizado).Generate();
-    public static global::Pagamentos.Domain.Entities.Pagamento Rejeitado() => NewBuilder().WithStatus(StatusPagamento.Rejeitado).Generate();
-    public static global::Pagamentos.Domain.Entities.Pagamento Cancelado() => NewBuilder().WithStatus(StatusPagamento.Cancelado).Generate();
+    public static Pagamento Create() => new PagamentoStubBuilder().Generate();
+    public static List<Pagamento> CreateMany(int qty) => new PagamentoStubBuilder().Generate(qty);
+    public static Pagamento Autorizado() => NewBuilder().WithStatus(StatusPagamento.Autorizado).Generate();
+    public static Pagamento Rejeitado() => NewBuilder().WithStatus(StatusPagamento.Rejeitado).Generate();
+    public static Pagamento Cancelado() => NewBuilder().WithStatus(StatusPagamento.Cancelado).Generate();
 }

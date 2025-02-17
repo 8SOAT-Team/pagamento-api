@@ -1,70 +1,32 @@
 ﻿using Bogus;
 using Pagamentos.Domain.Entities;
 
-namespace Pagamentos.Tests.IntegrationTests.Builder
+namespace Pagamentos.Tests.IntegrationTests.Builder;
+
+internal sealed class PagamentoBuilder : Faker<Pagamento>
 {
-    internal class PagamentoBuilder : Faker<Pagamentos.Domain.Entities.Pagamento>
+    public PagamentoBuilder()
     {
-        public PagamentoBuilder()
-        {
-            // Customizando a instância do Pagamento
-            CustomInstantiator(f => new Pagamentos.Domain.Entities.Pagamento(
-                pedidoId: new PedidoBuilder().Build().Id, // Usando o PedidoBuilder para gerar o pedido
-                metodoDePagamento: f.PickRandom<MetodoDePagamento>(), // Seleciona aleatoriamente um método de pagamento
-                valorTotal: f.Finance.Amount(1, 1000), // Gera um valor aleatório entre 1 e 1000
-                pagamentoExternoId: f.Random.Bool() ? f.Random.Guid().ToString() : null // Pode ou não ter um pagamento externo
-            ));
-        }
-
-        // Método para gerar uma instância de Pagamento com valores definidos
-        public PagamentoBuilder ComPedido(Pedido pedido)
-        {
-            CustomInstantiator(f => new Pagamentos.Domain.Entities.Pagamento(
-                pedidoId: pedido.Id,
-                metodoDePagamento: MetodoDePagamento.Master,
-                valorTotal: f.Finance.Amount(1, 1000),
-                pagamentoExternoId: f.Random.Bool() ? f.Random.Guid().ToString() : null
-            ));
-            return this;
-        }
-
-        // Método para definir um método de pagamento específico
-        public PagamentoBuilder ComMetodoDePagamento(MetodoDePagamento metodoDePagamento)
-        {
-            CustomInstantiator(f => new Pagamentos.Domain.Entities.Pagamento(
-                pedidoId: new PedidoBuilder().Build().Id,
-                metodoDePagamento: metodoDePagamento,
-                valorTotal: f.Finance.Amount(1, 1000),
-                pagamentoExternoId: f.Random.Bool() ? f.Random.Guid().ToString() : null
-            ));
-            return this;
-        }
-
-        // Método para definir um valor total específico
-        public PagamentoBuilder ComValorTotal(decimal valorTotal)
-        {
-            CustomInstantiator(f => new Pagamentos.Domain.Entities.Pagamento(
-                pedidoId: new PedidoBuilder().Build().Id,
-                metodoDePagamento: f.PickRandom<MetodoDePagamento>(),
-                valorTotal: valorTotal,
-                pagamentoExternoId: f.Random.Bool() ? f.Random.Guid().ToString() : null
-            ));
-            return this;
-        }
-
-        // Método para definir o status do pagamento
-        public PagamentoBuilder ComStatus(StatusPagamento status)
-        {
-            CustomInstantiator(f => new Pagamentos.Domain.Entities.Pagamento(
-                pedidoId: new PedidoBuilder().Build().Id,
-                metodoDePagamento: f.PickRandom<MetodoDePagamento>(),
-                valorTotal: f.Finance.Amount(1, 1000),
-                pagamentoExternoId: f.Random.Bool() ? f.Random.Guid().ToString() : null
-            ));
-            return this;
-        }
-
-        // Método para gerar o pagamento
-        public Pagamentos.Domain.Entities.Pagamento Build() => Generate();
+        CustomInstantiator(f => new Pagamento(
+            pedidoId: f.Random.Guid(),
+            metodoDePagamento: f.PickRandom<MetodoDePagamento>(),
+            valorTotal: f.Finance.Amount(1),
+            pagamentoExternoId: null
+        ));
     }
+
+    public PagamentoBuilder ComStatus(StatusPagamento status)
+    {
+        RuleFor(x => x.Status, f => status);
+        return this;
+    }
+    
+    public PagamentoBuilder ComPagamentoExternoId(string pagamentoExternoId)
+    {
+        RuleFor(x => x.PagamentoExternoId, f => pagamentoExternoId);
+        return this;
+    }
+
+    public static Pagamento Build() => new PagamentoBuilder().Generate();
+    public static PagamentoBuilder CreateBuilder() => new();
 }

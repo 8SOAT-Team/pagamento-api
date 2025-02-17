@@ -1,36 +1,45 @@
-﻿using CleanArch.UseCase.Faults;
-using CleanArch.UseCase.Logging;
+﻿using Bogus;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Pagamentos.Apps.UseCases;
 using Pagamentos.Apps.UseCases.Dtos;
 using Pagamentos.Domain.Entities;
+using Pagamentos.Tests.IntegrationTests.Builder;
 
+namespace Pagamentos.Tests.UnitTests.Domain.Pagamentos;
 
-namespace Tests.UnitTests.Domain.Pagamentos;
 public class ConfirmarStatusPagamentoUseCaseTest
 {
+    private readonly Faker _faker = new();
+
+    private readonly ILogger<ConfirmarStatusPagamentoUseCase> _mockLogger =
+        new Mock<ILogger<ConfirmarStatusPagamentoUseCase>>().Object;
 
     [Fact]
     public async Task Execute_DeveAdicionarErroQuandoPagamentoExternoNaoEncontrado()
     {
         // Arrange
-        var mockLogger = new Mock<ILogger>();
         var mockFornecedorPagamentoGateway = new Mock<IFornecedorPagamentoGateway>();
         var mockPagamentoGateway = new Mock<IPagamentoGateway>();
+        var pagamentoExternoId = _faker.Random.Guid().ToString();
+        var pagamento = PagamentoBuilder.CreateBuilder().ComPagamentoExternoId(pagamentoExternoId).Generate();
 
-        var pagamentoExternoId = "PagamentoExternoId";
+        mockPagamentoGateway.Setup(g => g.FindPagamentoByExternoIdAsync(pagamentoExternoId))
+            .ReturnsAsync(pagamento);
 
-        mockFornecedorPagamentoGateway.Setup(g => g.ObterPagamento(pagamentoExternoId, It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        mockFornecedorPagamentoGateway
+            .Setup(g => g.ObterPagamento(pagamento.PagamentoExternoId, It.IsAny<CancellationToken>()))
             .ReturnsAsync((FornecedorGetPagamentoResponseDto?)null);
 
-        var useCase = new ConfirmarStatusPagamentoTest(mockLogger.Object, mockFornecedorPagamentoGateway.Object, mockPagamentoGateway.Object);
+        var useCase = new ConfirmarStatusPagamentoUseCase(_mockLogger, mockFornecedorPagamentoGateway.Object,
+            mockPagamentoGateway.Object);
 
         // Act
-        var resultado = await useCase.Execute(pagamentoExternoId);
+        var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
         Assert.Null(resultado);
-        IReadOnlyCollection<UseCaseError> useCaseErrors = useCase.GetErrors();
+        var useCaseErrors = useCase.GetErrors();
         Assert.Single(useCaseErrors);
         Assert.Equal("Pagamento Externo não encontrado", useCaseErrors.FirstOrDefault().Description);
     }
@@ -39,28 +48,22 @@ public class ConfirmarStatusPagamentoUseCaseTest
     public async Task Execute_DeveAdicionarErroQuandoPagamentoNaoEncontrado()
     {
         // Arrange
-        var mockLogger = new Mock<ILogger>();
         var mockFornecedorPagamentoGateway = new Mock<IFornecedorPagamentoGateway>();
         var mockPagamentoGateway = new Mock<IPagamentoGateway>();
+        var pagamentoExternoId = _faker.Random.Guid().ToString();
 
-        var pagamentoExternoId = "PagamentoExternoId";
-        var pagamentoId = Guid.NewGuid();
-        var pagamentoExterno = new FornecedorGetPagamentoResponseDto(pagamentoExternoId, pagamentoId, StatusPagamento.Autorizado);
+        mockPagamentoGateway.Setup(g => g.FindPagamentoByExternoIdAsync(pagamentoExternoId))
+            .ReturnsAsync((Pagamento?)null);
 
-
-        mockFornecedorPagamentoGateway.Setup(g => g.ObterPagamento(pagamentoExternoId, It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(pagamentoExterno);
-
-        mockPagamentoGateway.Setup(g => g.GetByIdAsync(pagamentoExterno.PagamentoId)).ReturnsAsync((global::Pagamentos.Domain.Entities.Pagamento?)null);
-
-        var useCase = new ConfirmarStatusPagamentoTest(mockLogger.Object, mockFornecedorPagamentoGateway.Object, mockPagamentoGateway.Object);
+        var useCase = new ConfirmarStatusPagamentoUseCase(_mockLogger, mockFornecedorPagamentoGateway.Object,
+            mockPagamentoGateway.Object);
 
         // Act
-        var resultado = await useCase.Execute(pagamentoExternoId);
+        var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
         Assert.Null(resultado);
-        IReadOnlyCollection<UseCaseError> useCaseErrors = useCase.GetErrors();
+        var useCaseErrors = useCase.GetErrors();
         Assert.Single(useCaseErrors);
         Assert.Equal("Pagamento não encontrado", useCaseErrors.FirstOrDefault().Description);
     }
@@ -69,91 +72,58 @@ public class ConfirmarStatusPagamentoUseCaseTest
     public async Task Execute_DeveRetornarPagamentoQuandoStatusPendente()
     {
         // Arrange
-        var mockLogger = new Mock<ILogger>();
         var mockFornecedorPagamentoGateway = new Mock<IFornecedorPagamentoGateway>();
         var mockPagamentoGateway = new Mock<IPagamentoGateway>();
+        var pagamentoExternoId = _faker.Random.Guid().ToString();
+        var pagamento = PagamentoBuilder.CreateBuilder().ComPagamentoExternoId(pagamentoExternoId).Generate();
 
-        var pagamentoExternoId = "PagamentoExternoId";
-        var pagamentoId = Guid.NewGuid();
-        var pedidoId = Guid.NewGuid();
+        mockPagamentoGateway.Setup(g => g.FindPagamentoByExternoIdAsync(pagamentoExternoId))
+            .ReturnsAsync(pagamento);
 
-        var pagamentoExterno = new FornecedorGetPagamentoResponseDto(pagamentoExternoId, pagamentoId, StatusPagamento.Pendente);
+        mockFornecedorPagamentoGateway
+            .Setup(g => g.ObterPagamento(pagamento.PagamentoExternoId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync((FornecedorGetPagamentoResponseDto?)null);
 
-        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-        List<ItemDoPedido> listaItens = new List<ItemDoPedido> { itemPedido };
-        var pedido = new Pedido(pedidoId, Guid.NewGuid(), listaItens);
-
-        var pagamento = new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
-
-        mockFornecedorPagamentoGateway.Setup(g => g.ObterPagamento(pagamentoExternoId, It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(pagamentoExterno);
-
-        mockPagamentoGateway.Setup(g => g.GetByIdAsync(pagamentoId)).ReturnsAsync(pagamento);
-
-        var useCase = new ConfirmarStatusPagamentoTest(mockLogger.Object, mockFornecedorPagamentoGateway.Object, mockPagamentoGateway.Object);
+        var useCase = new ConfirmarStatusPagamentoUseCase(_mockLogger, mockFornecedorPagamentoGateway.Object,
+            mockPagamentoGateway.Object);
 
         // Act
-        var resultado = await useCase.Execute(pagamentoExternoId);
+        var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
         Assert.NotNull(resultado);
-        //Assert.Equal(pagamentoId, resultado.Id);
-        //mockPagamentoGateway.Verify(g => g.UpdatePagamentoAsync(It.IsAny<Pagamentos.Domain.Entities.Pagamento>()), Times.Never);
+        Assert.Equal(pagamento.Id, resultado.Value.Id);
+        mockPagamentoGateway.Verify(g => g.UpdatePagamentoAsync(It.IsAny<Pagamento>()), Times.Never);
     }
 
     [Fact]
     public async Task Execute_DeveFinalizarEPagarQuandoStatusAutorizado()
     {
         // Arrange
-        var mockLogger = new Mock<ILogger>();
         var mockFornecedorPagamentoGateway = new Mock<IFornecedorPagamentoGateway>();
         var mockPagamentoGateway = new Mock<IPagamentoGateway>();
+        var pagamentoExternoId = _faker.Random.Guid().ToString();
+        var pagamento = PagamentoBuilder.CreateBuilder().ComPagamentoExternoId(pagamentoExternoId).Generate();
 
-        var pagamentoExternoId = "PagamentoExternoId";
-        var pagamentoId = Guid.NewGuid();
-        var pedidoId = Guid.NewGuid();
+        mockPagamentoGateway.Setup(g => g.FindPagamentoByExternoIdAsync(pagamentoExternoId))
+            .ReturnsAsync(pagamento);
 
-        var pagamentoExterno = new FornecedorGetPagamentoResponseDto(pagamentoExternoId, pagamentoId, StatusPagamento.Autorizado);
-
-        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-        List<ItemDoPedido> listaItens = new List<ItemDoPedido> { itemPedido };
-        var pedido = new Pedido(pedidoId, Guid.NewGuid(), listaItens);
-
-        var pagamento = new global::Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
-
-        mockFornecedorPagamentoGateway.Setup(g => g.ObterPagamento(pagamentoExternoId, It.IsAny<string>(), It.IsAny<CancellationToken>()))
+        var pagamentoExterno =
+            new FornecedorGetPagamentoResponseDto(pagamento.PagamentoExternoId, pagamento.Id,
+                StatusPagamento.Autorizado);
+        mockFornecedorPagamentoGateway
+            .Setup(g => g.ObterPagamento(pagamento.PagamentoExternoId, It.IsAny<CancellationToken>()))
             .ReturnsAsync(pagamentoExterno);
 
-        mockPagamentoGateway.Setup(g => g.GetByIdAsync(pagamentoId)).ReturnsAsync(pagamento);
-
-        mockPagamentoGateway.Setup(g => g.UpdatePagamentoAsync(It.IsAny<global::Pagamentos.Domain.Entities.Pagamento>())).ReturnsAsync(pagamento);
-
-        var useCase = new ConfirmarStatusPagamentoTest(mockLogger.Object, mockFornecedorPagamentoGateway.Object, mockPagamentoGateway.Object);
+        var useCase = new ConfirmarStatusPagamentoUseCase(_mockLogger, mockFornecedorPagamentoGateway.Object,
+            mockPagamentoGateway.Object);
 
         // Act
-        var resultado = await useCase.Execute(pagamentoExternoId);
+        var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
         Assert.NotNull(resultado);
-        //Assert.Equal(pagamentoId, resultado.Id);
-        //mockPagamentoGateway.Verify(g => g.UpdatePagamentoAsync(It.IsAny<Pagamentos.Domain.Entities.Pagamento>()), Times.Once);
+        Assert.Equal(pagamento.Id, resultado.Value.Id);
+        mockPagamentoGateway.Verify(g => g.UpdatePagamentoAsync(It.IsAny<Pagamento>()), Times.Once);
     }
-
-}
-
-
-public class ConfirmarStatusPagamentoTest : ConfirmarStatusPagamentoUseCase
-{
-    public ConfirmarStatusPagamentoTest(ILogger logger,
-    IFornecedorPagamentoGateway fornecedorPagamentoGateway,
-    IPagamentoGateway pagamentoGateway)
-        : base("token", logger, fornecedorPagamentoGateway, pagamentoGateway) { }
-
-    public new Task<global::Pagamentos.Domain.Entities.Pagamento?> Execute(string pagamentoExternoId)
-    {
-        return base.Execute(pagamentoExternoId);
-    }
-
 }

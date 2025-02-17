@@ -1,89 +1,53 @@
-﻿using Pagamentos.Adapters.Controllers;
+﻿using Bogus;
+using FluentAssertions;
 using Pagamentos.Adapters.Presenters;
 using Pagamentos.Domain.Entities;
+using Pagamentos.Tests.IntegrationTests.Builder;
 
+namespace Pagamentos.Tests.UnitTests.Adapters;
 
-namespace Tests.UnitTests.Adapters;
 public class PagamentoPresenterTests
 {
+    private readonly Faker _faker = new();
+
     [Fact]
     public void ToPagamentoDTO_DeveRetornarDTO_Corretamente()
     {
-
-        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-        List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-        listaItens.Add(itemPedido);
-
-        var pedido = new Pedido(Guid.NewGuid(), listaItens);
-
-        //Act
-        var pagamento = new Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
-
-
-        pagamento.AssociarPagamentoExterno("ext123", "https://pagamento.com/ext123");
+        // Arrange
+        var pagamento = new Pagamento(_faker.Random.Guid(), MetodoDePagamento.Pix, 100m, "idExterno");
+        pagamento.AssociarPagamentoExterno(_faker.Random.Guid().ToString(), _faker.Internet.Url());
         pagamento.FinalizarPagamento(true);
-     
 
         // Act
         var dto = PagamentoPresenter.ToPagamentoDto(pagamento);
 
         // Assert
-        Assert.Equal(pagamento.Id, dto.Id);
-        Assert.Equal((MetodosDePagamento)pagamento.MetodoDePagamento, dto.MetodoDePagamento);
-        Assert.Equal((StatusDoPagamento)pagamento.Status, dto.status);
-        Assert.Equal(pagamento.ValorTotal, dto.ValorTotal);
-        Assert.Equal(pagamento.PagamentoExternoId, dto.PagamentoExternoId);
-        Assert.Equal(pagamento.UrlPagamento, dto.UrlPagamento);
+        dto.Should().BeEquivalentTo(pagamento);
     }
 
     [Fact]
     public void ToListPagamentoDTO_DeveRetornarListaDTO_Corretamente()
     {
         // Arrange
-        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-        List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-        listaItens.Add(itemPedido);
-        var pedido = new Pedido(Guid.NewGuid(), listaItens);
-        //Act
-        var pagamento = new Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
-        pagamento.AssociarPagamentoExterno("ext123", "https://pagamento.com/ext123");
-        pagamento.FinalizarPagamento(true);
-        var pagamentos = new List<Pagamentos.Domain.Entities.Pagamento> { pagamento };
+        var pagamentos = _faker.Make(_faker.Random.Int(1, 10), PagamentoBuilder.Build).ToList();
+
         // Act
         var dtos = PagamentoPresenter.ToListPagamentoDto(pagamentos);
+        
         // Assert
-        Assert.Single(dtos);
-        Assert.Equal(pagamento.Id, dtos.First().Id);
-        Assert.Equal((MetodosDePagamento)pagamento.MetodoDePagamento, dtos.First().MetodoDePagamento);
-        Assert.Equal((StatusDoPagamento)pagamento.Status, dtos.First().status);
-        Assert.Equal(pagamento.ValorTotal, dtos.First().ValorTotal);
-        Assert.Equal(pagamento.PagamentoExternoId, dtos.First().PagamentoExternoId);
-        Assert.Equal(pagamento.UrlPagamento, dtos.First().UrlPagamento);
-
+        dtos.Should().BeEquivalentTo(pagamentos);
     }
 
     [Fact]
     public void ToPagamento_DeveRetornarPagamento_Corretamente()
     {
         // Arrange
-        var produto = new Produto("Lanche", "Lanche de bacon", 50m, "http://endereco/imagens/img.jpg", Guid.NewGuid());
-        var itemPedido = new ItemDoPedido(Guid.NewGuid(), produto, 2);
-        List<ItemDoPedido> listaItens = new List<ItemDoPedido>();
-        listaItens.Add(itemPedido);
-        var pedido = new Pedido(Guid.NewGuid(), listaItens);
-        //Act
-        var pagamento = new Pagamentos.Domain.Entities.Pagamento(pedido.Id, MetodoDePagamento.Pix, 100m, "idExterno");
-        pagamento.AssociarPagamentoExterno("ext123", "https://pagamento.com/ext123");
-        pagamento.FinalizarPagamento(true);
-        var dto = PagamentoPresenter.ToPagamentoDto(pagamento);
+        var pagamento = new Pagamento(_faker.Random.Guid(), MetodoDePagamento.Pix, 100m, "idExterno");
+        
         // Act
-        var result = dto;
+        var result = PagamentoPresenter.ToPagamentoDto(pagamento);
+        
         // Assert
-        Assert.Equal(pagamento.Id, result.Id);        
-        Assert.Equal(pagamento.ValorTotal, result.ValorTotal);
-        Assert.Equal(pagamento.PagamentoExternoId, result.PagamentoExternoId);
-        Assert.Equal(pagamento.UrlPagamento, result.UrlPagamento);
+        result.Should().BeEquivalentTo(pagamento);
     }
 }

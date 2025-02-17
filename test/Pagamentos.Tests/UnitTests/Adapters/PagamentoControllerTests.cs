@@ -1,32 +1,28 @@
-﻿using Moq;
-using Xunit;
+﻿using CleanArch.UseCase.Options;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Pagamentos.Adapters.Controllers;
-using Pagamentos.Adapters.Presenters;
-using Pagamentos.Apps.UseCases;
-using Pagamentos.Apps.UseCases.Dtos;
-using Pagamentos.Domain.Entities;
-using CleanArch.UseCase.Logging;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Pagamentos.Adapters.Types;
-using CleanArch.UseCase.Options;
+using Pagamentos.Apps.UseCases;
+using Pagamentos.Domain.Entities;
+using Pagamentos.Tests.IntegrationTests.Builder;
 
-namespace Tests.UnitTests.Adapters;
+namespace Pagamentos.Tests.UnitTests.Adapters;
 
 public class PagamentoControllerTests
 {
-    private readonly Mock<ILogger> _mockLogger;
+    private readonly Mock<ILoggerFactory> _mockLogger;
     private readonly Mock<IPagamentoGateway> _mockPagamentoGateway;
     private readonly Mock<IFornecedorPagamentoGateway> _mockFornecedorPagamentoGateway;
     private readonly PagamentoController _controller;
 
     public PagamentoControllerTests()
     {
-        _mockLogger = new Mock<ILogger>();
+        _mockLogger = new Mock<ILoggerFactory>();
         _mockPagamentoGateway = new Mock<IPagamentoGateway>();
         _mockFornecedorPagamentoGateway = new Mock<IFornecedorPagamentoGateway>();
-        _controller = new PagamentoController(_mockLogger.Object, _mockPagamentoGateway.Object, _mockFornecedorPagamentoGateway.Object);
+        _controller = new PagamentoController(_mockLogger.Object, _mockPagamentoGateway.Object,
+            _mockFornecedorPagamentoGateway.Object);
     }
 
     [Fact]
@@ -35,22 +31,19 @@ public class PagamentoControllerTests
         // Arrange
         var pagamentoId = Guid.NewGuid();
         var status = StatusDoPagamento.Autorizado;
-        var pagamento = new Pagamentos.Domain.Entities.Pagamento(pagamentoId, MetodoDePagamento.Pix, 100m, "idExterno");
-        _mockPagamentoGateway.Setup(x => x.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(new Pagamentos.Domain.Entities.Pagamento(pagamentoId, MetodoDePagamento.Pix, 100m, "idExterno"));
-
-        var useCaseResult = Any<Pagamentos.Domain.Entities.Pagamento>.Some(new Pagamentos.Domain.Entities.Pagamento(pagamentoId, MetodoDePagamento.Pix, 100m, "idExterno"));
-
-        var useCase = new ConfirmarPagamentoUseCase(_mockLogger.Object, _mockPagamentoGateway.Object);
+        _mockPagamentoGateway.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()))
+            .ReturnsAsync(new Pagamento(pagamentoId, MetodoDePagamento.Pix, 100m, "idExterno"));
         
-
+        _mockLogger.Setup(x => x.CreateLogger<ConfirmarPagamentoUseCase>())
+            .Returns(new Mock<ILogger<ConfirmarPagamentoUseCase>>().Object);
+        
         // Act
         var result = await _controller.ConfirmarPagamento(pagamentoId, status);
 
         // Assert
         Assert.NotNull(result);
         Assert.IsType<Result<PagamentoResponseDTO>>(result);
-        Assert.Equal(pagamentoId, result.Value.Id);  // Certifique-se que o valor retornado seja o esperado
-        
+        Assert.Equal(pagamentoId, result.Value.Id);
     }
 
     [Fact]
@@ -58,11 +51,14 @@ public class PagamentoControllerTests
     {
         // Arrange
         var pedidoId = Guid.NewGuid();
-        var pagamentoList = new List<Pagamentos.Domain.Entities.Pagamento>
+        var pagamentoList = new List<Pagamento>
         {
-            new Pagamentos.Domain.Entities.Pagamento(pedidoId, MetodoDePagamento.Pix, 100m, "idExterno")
+            new(pedidoId, MetodoDePagamento.Pix, 100m, "idExterno")
         };
 
+        _mockLogger.Setup(x => x.CreateLogger<ObterPagamentoByPedidoUseCase>())
+            .Returns(new Mock<ILogger<ObterPagamentoByPedidoUseCase>>().Object);
+        
         _mockPagamentoGateway.Setup(x => x.FindPagamentoByPedidoIdAsync(pedidoId)).ReturnsAsync(pagamentoList);
 
         // Act
@@ -71,36 +67,29 @@ public class PagamentoControllerTests
         // Assert
         Assert.NotNull(result);
         Assert.IsType<Result<List<PagamentoResponseDTO>>>(result);
-        Assert.Single(result.Value);  // Verifica se a lista tem um único item
+        Assert.Single(result.Value); // Verifica se a lista tem um único item
     }
 
     [Fact]
     public async Task IniciarPagamento_DeveRetornarResultadoCorreto()
     {
         // Arrange
-        var pedidoId = Guid.NewGuid();
-        var metodoDePagamento = MetodosDePagamento.Master;
-        var valorTotal = 150m;
-        var emailPagador = "email@example.com";
-        var webhookUrl = "http://webhook.url";
-        var token = "token123";
-        var dto = new IniciarPagamentoDto(pedidoId, MetodoDePagamento.Master, valorTotal, emailPagador, webhookUrl, token);
-
-        var pagamento = new Pagamentos.Domain.Entities.Pagamento(pedidoId, MetodoDePagamento.Master, valorTotal, "idExterno");
-        var useCaseResult = Any<Pagamentos.Domain.Entities.Pagamento>.Some(pagamento);
-        var useCase = new IniciarPagamentoUseCase(_mockLogger.Object, _mockPagamentoGateway.Object, _mockFornecedorPagamentoGateway.Object);
-
-        _mockPagamentoGateway.Setup(x => x.GetByIdAsync(pedidoId)).ReturnsAsync(pagamento);
-        _mockFornecedorPagamentoGateway.Setup(x => x.IniciarPagamento(It.IsAny<MetodoDePagamento>(), It.IsAny<string>(), It.IsAny<decimal>(), It.IsAny<string>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<System.Threading.CancellationToken>())).ReturnsAsync(new FornecedorCriarPagamentoResponseDto("idExterno", "urlPagamento" ));
-
+        var dto = new IniciarPagamentoDtoBuilder().Generate();
+        var valorTotal = dto.Itens.Sum(x => x.PrecoUnitario * x.Quantidade);
+        
+        var pagamento =
+            new Pagamento(Guid.NewGuid(), dto.PedidoId, MetodoDePagamento.Master, valorTotal, "idExterno");
+        var useCaseResult = Any<Pagamento>.Some(pagamento);
+        var useCase = new Mock<IniciarPagamentoUseCase>();
+        useCase.Setup(x => x.ResolveAsync(dto)).ReturnsAsync(useCaseResult);
+        
         // Act
-        var result = await _controller.IniciarPagamento(pedidoId, metodoDePagamento, valorTotal, emailPagador, webhookUrl, token);
+        var result =
+            await _controller.IniciarPagamento(dto);
 
         // Assert
         Assert.NotNull(result);
         Assert.IsType<Result<PagamentoResponseDTO>>(result);
-        Assert.Equal(pedidoId, result.Value.Id);
+        Assert.Equal(dto.PedidoId, result.Value!.PedidoId);
     }
-
-    
 }
