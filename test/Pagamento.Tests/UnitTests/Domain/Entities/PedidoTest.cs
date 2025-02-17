@@ -55,5 +55,57 @@ namespace Postech8SOAT.FastOrder.Tests.Domain.Entities
             //Assert
             Assert.Throws<DomainExceptionValidation>(() => act());
         }
+
+        [Fact]
+        public void Cancelar_PedidoComStatusRecebido_DeveAlterarStatusParaCancelado()
+        {
+            // Arrange
+            var pedido = new Pedido(Guid.NewGuid(), new List<ItemDoPedido>());
+
+            // Act
+            pedido.Cancelar();
+
+            // Assert
+            Assert.Equal(StatusPedido.Cancelado, pedido.StatusPedido);
+        }
+
+        [Fact]
+        public void Cancelar_PedidoComStatusFinalizado_NaoDeveAlterarStatus()
+        {
+            // Arrange
+            var pedido = new Pedido(Guid.NewGuid(), new List<ItemDoPedido>());
+            typeof(Pedido).GetProperty("StatusPedido").SetValue(pedido, StatusPedido.Finalizado);
+
+            // Act & Assert
+            var exception = Assert.Throws<DomainExceptionValidation>(() => pedido.Cancelar());
+            Assert.Equal("O pedido não pode ser cancelado após ser Finalizado.", exception.Message);
+        }
+
+        [Fact]
+        public void Entregar_PedidoComStatusPronto_DeveAlterarStatusParaFinalizado()
+        {
+            // Arrange
+            var pedido = new Pedido(Guid.NewGuid(), new List<ItemDoPedido>());
+            typeof(Pedido).GetProperty("StatusPedido").SetValue(pedido, StatusPedido.Pronto);
+
+            // Act
+            pedido.Entregar();
+
+            // Assert
+            Assert.Equal(StatusPedido.Finalizado, pedido.StatusPedido);
+        }
+
+        [Fact]
+        public void Entregar_PedidoComStatusEmPreparacao_NaoDeveAlterarStatus()
+        {
+            // Arrange
+            var pedido = new Pedido(Guid.NewGuid(), new List<ItemDoPedido>());
+            typeof(Pedido).GetProperty("StatusPedido").SetValue(pedido, StatusPedido.EmPreparacao);
+
+            // Act & Assert
+            var exception = Assert.Throws<DomainExceptionValidation>(() => pedido.Entregar());
+            Assert.Equal("O pedido deve estar Pronto para realizar a entrega.", exception.Message);
+        }
+
     }
 }
