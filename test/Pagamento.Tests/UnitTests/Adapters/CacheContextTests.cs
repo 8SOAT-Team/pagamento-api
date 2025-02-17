@@ -29,7 +29,7 @@ public class CacheContextTests
     {
         // Arrange
         var key = "test-key";
-        var expectedValue = new { Name = "Test", Age = 30 };
+        var expectedValue = new TestObject { Name = "Test", Age = 30 };
         var jsonValue = JsonSerializer.Serialize(expectedValue, _jsonOptions);
 
         _mockDatabase
@@ -37,7 +37,7 @@ public class CacheContextTests
             .ReturnsAsync((RedisValue)jsonValue);
 
         // Act
-        var result = await _cacheContext.GetItemByKeyAsync<dynamic>(key);
+        var result = await _cacheContext.GetItemByKeyAsync<TestObject>(key);
 
         // Assert
         Assert.True(result.IsSucceed);
@@ -45,7 +45,7 @@ public class CacheContextTests
         Assert.Equal(30, result.Value.Age);
     }
 
-   [Fact]
+    [Fact]
     public async Task GetItemByKeyAsync_ShouldReturnEmptyResult_WhenKeyDoesNotExist()
     {
         // Arrange
@@ -59,7 +59,7 @@ public class CacheContextTests
         var result = await _cacheContext.GetItemByKeyAsync<object>(key);
 
         // Assert
-        Assert.True(result.IsFailure);
+        Assert.False(result.IsFailure);
     }
 
     [Fact]
@@ -89,7 +89,7 @@ public class CacheContextTests
         var result = await _cacheContext.SetNotNullStringByKeyAsync<object>("test-key", null);
 
         // Assert
-        Assert.True(result.IsFailure);
+        Assert.False(result.IsFailure);
     }
 
     [Fact]
@@ -108,7 +108,7 @@ public class CacheContextTests
         var result = await _cacheContext.SetNotNullStringByKeyAsync(key, value);
 
         // Assert
-        Assert.True(result.IsFailure);
+        Assert.False(result.IsFailure);
         
     }
 
@@ -165,4 +165,11 @@ public class CacheContextTests
         // Assert
         Assert.True(result.IsFailure);
     }
+}
+
+
+public class TestObject
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
 }

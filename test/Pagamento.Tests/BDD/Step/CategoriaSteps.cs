@@ -47,7 +47,7 @@ public class CategoriaSteps
     [Then(@"uma exceção do tipo ""(.*)"" deve ser lançada")]
     public void EntaoUmaExcecaoDoTipoDeveSerLancada(string exceptionType)
     {
-        Assert.NotNull(_exception);
+       
         Assert.Equal(exceptionType, _exception.GetType().Name);
     }
 

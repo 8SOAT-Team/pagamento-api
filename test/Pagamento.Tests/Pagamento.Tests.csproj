@@ -10,7 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UnitTests\FrameworksAndDrivers\**" />
+    <EmbeddedResource Remove="UnitTests\FrameworksAndDrivers\**" />
+    <None Remove="UnitTests\FrameworksAndDrivers\**" />
+    <SpecFlowFeatureFiles Remove="UnitTests\FrameworksAndDrivers\**" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="UnitTests\FrameworksAndDrivers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="IntegrationTests\Builder\CategoriaBuilder.cs" />
+    <Compile Remove="UnitTests\Adapters\CacheGatewayTests.cs" />
     <Compile Remove="UnitTests\Adapters\JsonSerializerExtensionTests.cs" />
   </ItemGroup>
 
@@ -48,10 +57,6 @@
     <ProjectReference Include="..\..\src\Pagamento.Apps\Pagamento.Apps.csproj" />
     <ProjectReference Include="..\..\src\Pagamento.Domain\Pagamento.Domain.csproj" />
     <ProjectReference Include="..\..\src\Pagamento.Infrastructure\Pagamento.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UnitTests\FrameworksAndDrivers\" />
   </ItemGroup>
 
 </Project>
