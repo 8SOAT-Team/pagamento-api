@@ -21,6 +21,7 @@
     <projectFile profileName="Pagamento.Apps">src/Pagamento.Apps/Pagamento.Apps.csproj</projectFile>
     <projectFile profileName="Pagamento.Adapters">src/Pagamentos.Adapters/Pagamentos.Adapters.csproj</projectFile>
     <projectFile kind="Docker">src/Pagamentos.Api/Pagamentos.Api.csproj</projectFile>
+    <projectFile profileName="IIS Express">src/Pagamentos.Api/Pagamentos.Api.csproj</projectFile>
     <projectFile profileName="http">src/Pagamentos.Api/Pagamentos.Api.csproj</projectFile>
     <projectFile profileName="https">src/Pagamentos.Api/Pagamentos.Api.csproj</projectFile>
     <projectFile profileName="Pagamento.Apps">src/Pagamentos.Apps/Pagamentos.Apps.csproj</projectFile>
@@ -30,20 +31,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9618b77e-8885-4441-9d16-6f591e38582e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoDTOBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoDTOBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/coverage_report.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Feature/Pagamento.Feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Feature/Pagamento.Feature.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Step/PagamentoSteps.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/Pagamentos.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/Pagamentos.Tests.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoPresenterTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoPresenterTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Entities/PagamentoTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Entities/PagamentoTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/ControllerResultBuilderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/ControllerResultBuilderTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/UseCasePresenterTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/UseCasePresenterTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,47 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/81427bb79ca4dd8b7472ec794faaa3c413e68ebdba20182846a49537f18fca64/SwaggerGenServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce37be1a06b16c6faa02038d2cc477dd3bca5b217ceeb41c5f2ad45c1bf9/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoDTOBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoPresenterTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Entities/PagamentoTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -88,22 +129,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.Pagamento: http.executor&quot;: &quot;Debug&quot;,
-    &quot;50d97d2d-ddad-4a5c-aa9d-cc6838aa9546.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fix/project-issues&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.Pagamento: http.executor": "Debug",
+    "50d97d2d-ddad-4a5c-aa9d-cc6838aa9546.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Merging fix/project-issues",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Pagamento: http">
     <configuration name="Pagamento: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Pagamento.Api/Pagamento.Api.csproj" />
@@ -268,6 +309,7 @@
       <workItem from="1739634946411" duration="672000" />
       <workItem from="1739721347225" duration="347000" />
       <workItem from="1739721725496" duration="15539000" />
+      <workItem from="1739836052610" duration="425000" />
     </task>
     <servers />
   </component>

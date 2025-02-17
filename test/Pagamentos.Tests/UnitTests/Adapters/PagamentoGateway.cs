@@ -1,16 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Moq;
-using Pagamentos.Adapters.Gateways;
 using Pagamentos.Domain.Entities;
 using Pagamentos.Infrastructure.Databases;
 using Pagamentos.Infrastructure.Pagamentos;
-using Pagamento.Adapters.Gateways;
-using Pagamento.Domain.Entities;
-using Pagamento.Infrastructure.Databases;
-using System.Linq.Expressions;
 
-namespace Tests.UnitTests.Adapters;
+namespace Pagamentos.Tests.UnitTests.Adapters;
 public class PagamentoGatewayTests
 {
     private readonly Mock<PagamentoContext> _mockDbContext;
@@ -21,27 +17,27 @@ public class PagamentoGatewayTests
         _mockDbContext = new Mock<PagamentoContext>();
 
         // Criando dados simulados
-        var mockPagamentos = new List<Pagamentos.Domain.Entities.Pagamento>
+        var mockPagamentos = new List<Pagamento>
     {
-        new Pagamentos.Domain.Entities.Pagamento(Guid.NewGuid(), MetodoDePagamento.Master, 150.0m, "idExterno1") { PedidoId = Guid.NewGuid() },
-        new Pagamentos.Domain.Entities.Pagamento(Guid.NewGuid(), MetodoDePagamento.Master, 200.0m, "idExterno2") { PedidoId = Guid.NewGuid() },
-        new Pagamentos.Domain.Entities.Pagamento(Guid.NewGuid(), MetodoDePagamento.Master, 300.0m, "idExterno3") { PedidoId = Guid.NewGuid() }
+        new Pagamento(Guid.NewGuid(), MetodoDePagamento.Master, 150.0m, "idExterno1") { PedidoId = Guid.NewGuid() },
+        new(Guid.NewGuid(), MetodoDePagamento.Master, 200.0m, "idExterno2") { PedidoId = Guid.NewGuid() },
+        new(Guid.NewGuid(), MetodoDePagamento.Master, 300.0m, "idExterno3") { PedidoId = Guid.NewGuid() }
     }.AsQueryable();
 
-        var mockDbSet = new Mock<DbSet<Pagamentos.Domain.Entities.Pagamento>>();
+        var mockDbSet = new Mock<DbSet<Pagamento>>();
 
         // Configurando o mock para suportar operações assíncronas
-        mockDbSet.As<IQueryable<Pagamentos.Domain.Entities.Pagamento>>().Setup(m => m.Provider)
-            .Returns(new TestAsyncQueryProvider<Pagamento.Domain.Entities.Pagamento>(mockPagamentos.Provider));
+        mockDbSet.As<IQueryable<Pagamento>>().Setup(m => m.Provider)
+            .Returns(new TestAsyncQueryProvider<Pagamento>(mockPagamentos.Provider));
 
-        mockDbSet.As<IQueryable<Pagamentos.Domain.Entities.Pagamento>>().Setup(m => m.Expression).Returns(mockPagamentos.Expression);
-        mockDbSet.As<IQueryable<Pagamentos.Domain.Entities.Pagamento>>().Setup(m => m.ElementType).Returns(mockPagamentos.ElementType);
-        mockDbSet.As<IQueryable<Pagamentos.Domain.Entities.Pagamento>>().Setup(m => m.GetEnumerator()).Returns(mockPagamentos.GetEnumerator());
+        mockDbSet.As<IQueryable<Pagamento>>().Setup(m => m.Expression).Returns(mockPagamentos.Expression);
+        mockDbSet.As<IQueryable<Pagamento>>().Setup(m => m.ElementType).Returns(mockPagamentos.ElementType);
+        mockDbSet.As<IQueryable<Pagamento>>().Setup(m => m.GetEnumerator()).Returns(mockPagamentos.GetEnumerator());
 
         // Configurando suporte para IAsyncEnumerable
-        mockDbSet.As<IAsyncEnumerable<Pagamento.Domain.Entities.Pagamento>>()
+        mockDbSet.As<IAsyncEnumerable<Pagamento>>()
             .Setup(m => m.GetAsyncEnumerator(It.IsAny<CancellationToken>()))
-            .Returns(new TestAsyncEnumerator<Pagamento.Domain.Entities.Pagamento>(mockPagamentos.GetEnumerator()));
+            .Returns(new TestAsyncEnumerator<Pagamento>(mockPagamentos.GetEnumerator()));
 
         _mockDbContext.Setup(c => c.Pagamentos).Returns(mockDbSet.Object);
 
