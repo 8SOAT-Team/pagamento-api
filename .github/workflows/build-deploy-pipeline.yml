@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Debug - Listando arquivos na API
-        run: ls -R src/Pagamento.Api
+        run: ls -R src/Pagamentos.Api
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
@@ -24,14 +24,14 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd src/Pagamento.Api
-          dotnet restore Pagamento.Api.csproj
+          cd src/Pagamentos.Api
+          dotnet restore Pagamentos.Api.csproj
 
       - name: Build and publish
         run: |
-          cd src/Pagamento.Api
-          dotnet build Pagamento.Api.csproj -c Release --no-restore
-          dotnet publish Pagamento.Api.csproj -c Release -o app/publish /p:UseAppHost=false
+          cd src/Pagamentos.Api
+          dotnet build Pagamentos.Api.csproj -c Release --no-restore
+          dotnet publish Pagamentos.Api.csproj -c Release -o app/publish /p:UseAppHost=false
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -45,14 +45,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/pagamento-api:latest \
-            -t ${{ secrets.DOCKER_USERNAME }}/pagamento-api:${{ github.sha }} \
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:${{ github.sha }} \
             .
 
       - name: Push Docker images to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/pagamento-api:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/pagamento-api:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -92,4 +92,4 @@ jobs:
         run: |
           kubectl apply -f iac/kubernetes/namespace.yaml
           kubectl apply -f iac/kubernetes
-          kubectl rollout status deployment/pagamento-dep -n fast-order
+          kubectl rollout status deployment/Pagamentos-dep -n fast-order
