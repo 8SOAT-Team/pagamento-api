@@ -13,19 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AF2D10
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworksAndDrivers", "FrameworksAndDrivers", "{0756B6D5-97EE-45BB-A823-544A356B0F8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamento.Adapters", "src\Pagamento.Adapters\Pagamento.Adapters.csproj", "{6C63C3C5-6F02-477D-AA39-2D387BB88544}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamentos.Adapters", "src\Pagamentos.Adapters\Pagamentos.Adapters.csproj", "{6C63C3C5-6F02-477D-AA39-2D387BB88544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamento.Apps", "src\Pagamento.Apps\Pagamento.Apps.csproj", "{B6EE96D4-754E-434F-821E-D43E66ED86CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamentos.Apps", "src\Pagamentos.Apps\Pagamentos.Apps.csproj", "{B6EE96D4-754E-434F-821E-D43E66ED86CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamento.Domain", "src\Pagamento.Domain\Pagamento.Domain.csproj", "{BD9449F7-3A6D-4C77-A910-3A94D7DF8168}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamentos.Domain", "src\Pagamentos.Domain\Pagamentos.Domain.csproj", "{BD9449F7-3A6D-4C77-A910-3A94D7DF8168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamento.Api", "src\Pagamento.Api\Pagamento.Api.csproj", "{75D080EA-E32D-42A5-861A-E1436E234D98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamentos.Api", "src\Pagamentos.Api\Pagamentos.Api.csproj", "{75D080EA-E32D-42A5-861A-E1436E234D98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{459565C5-1610-4FF0-A09F-177A112EAEBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamento.Tests", "test\Pagamento.Tests\Pagamento.Tests.csproj", "{EBCBF025-00D8-4552-930C-A73507554CDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamentos.Tests", "test\Pagamentos.Tests\Pagamentos.Tests.csproj", "{EBCBF025-00D8-4552-930C-A73507554CDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamento.Infrastructure", "src\Pagamento.Infrastructure\Pagamento.Infrastructure.csproj", "{76726597-A299-443A-818F-8BB54FF5627D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagamentos.Infrastructure", "src\Pagamentos.Infrastructure\Pagamentos.Infrastructure.csproj", "{76726597-A299-443A-818F-8BB54FF5627D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

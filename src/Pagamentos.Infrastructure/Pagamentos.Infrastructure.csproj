@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="mercadopago-sdk" Version="2.4.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6"/>
+
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6"/>
+        <PackageReference Include="StackExchange.Redis" Version="2.8.24" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Pagamentos.Adapters\Pagamentos.Adapters.csproj" />
+        <ProjectReference Include="..\Pagamentos.Apps\Pagamentos.Apps.csproj"/>
+        <ProjectReference Include="..\Pagamentos.Domain\Pagamentos.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="GatewayDePagamento\MercadoPago\" />
+        <Folder Include="Migrations\"/>
+    </ItemGroup>
+
+</Project>
