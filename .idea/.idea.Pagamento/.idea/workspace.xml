@@ -31,29 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9618b77e-8885-4441-9d16-6f591e38582e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/HostTest/FakeFornecedorPagamentoGateway.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/IPagamentoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/IPagamentoController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoResponseDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoResponseDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Pagamentos.Adapters.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Pagamentos.Adapters.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Presenters/PagamentoPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Presenters/PagamentoPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Api/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Api/Endpoints/PagamentoExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Api/Endpoints/PagamentoExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Apps/UseCases/IFornecedorPagamentoGateway.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Apps/UseCases/IFornecedorPagamentoGateway.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Databases/CacheContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Databases/CacheContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Pagamentos/FornecedorPagamentoGateway.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Pagamentos/FornecedorPagamentoGateway.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/IniciarPagamentoDtoBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/IniciarPagamentoDtoBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/HostTest/FastOrderWebApplicationFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/HostTest/FastOrderWebApplicationFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +313,7 @@
       <workItem from="1739634946411" duration="672000" />
       <workItem from="1739721347225" duration="347000" />
       <workItem from="1739721725496" duration="15539000" />
-      <workItem from="1739836052610" duration="5735000" />
+      <workItem from="1739836052610" duration="6538000" />
     </task>
     <servers />
   </component>
@@ -346,68 +324,17 @@
     <option name="coveragePercentColumnWidth" value="150" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="276" />
+    <option name="symbolColumnWidth" value="281" />
     <coverage-tree-state>
       <expand>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 82% 199/1109" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Api 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Api 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Api 84% 12/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Api 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Api 84% 12/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamento 100% 0/23" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-        </path>
-        <path>
-          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Pagamentos.Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 82% 199/1109" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 82% 84/478" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
