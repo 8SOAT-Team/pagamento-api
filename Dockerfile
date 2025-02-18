@@ -8,25 +8,25 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY ["src/Pagamento.Api/Pagamento.Api.csproj", "Pagamento.Api/"]
-COPY ["src/Pagamento.Domain/Pagamento.Domain.csproj", "Pagamento.Domain/"]
-COPY ["src/Pagamento.Apps/Pagamento.Apps.csproj", "Pagamento.Apps/"]
-COPY ["src/Pagamento.Adapters/Pagamento.Adapters.csproj", "Pagamento.Adapters/"]
-COPY ["src/Pagamento.Infrastructure/Pagamento.Infrastructure.csproj", "Pagamento.Infrastructure/"]
+COPY ["src/pagamentos.Api/pagamentos.Api.csproj", "pagamentos.Api/"]
+COPY ["src/pagamentos.Domain/pagamentos.Domain.csproj", "pagamentos.Domain/"]
+COPY ["src/pagamentos.Apps/pagamentos.Apps.csproj", "pagamentos.Apps/"]
+COPY ["src/pagamentos.Adapters/pagamentos.Adapters.csproj", "pagamentos.Adapters/"]
+COPY ["src/pagamentos.Infrastructure/pagamentos.Infrastructure.csproj", "pagamentos.Infrastructure/"]
 
 RUN dotnet restore
 
 COPY . .
-WORKDIR "/src/Pagamento.Api"
+WORKDIR "/src/pagamentos.Api"
 
-RUN dotnet build "Pagamento.Api.csproj" -c $BUILD_CONFIGURATION --no-dependencies -o /app/build
+RUN dotnet build "pagamentos.Api.csproj" -c $BUILD_CONFIGURATION --no-dependencies -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Pagamento.Api.csproj" -c $BUILD_CONFIGURATION --no-dependencies -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "pagamentos.Api.csproj" -c $BUILD_CONFIGURATION --no-dependencies -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Pagamento.Api.dll"]
+ENTRYPOINT ["dotnet", "pagamentos.Api.dll"]
 
