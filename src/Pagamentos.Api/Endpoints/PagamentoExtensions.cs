@@ -41,7 +41,7 @@ public static class PagamentoExtensions
                 return useCaseResult.GetResult();
             }).WithTags(PagamentoTag)
             .WithSummary("Inicialize um pagamento de um pedido.")
-            .Produces<PagamentoResponseDTO>((int)HttpStatusCode.Created)
+            .Produces<PagamentoResponseDto>((int)HttpStatusCode.Created)
             .Produces<AppBadRequestProblemDetails>((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.NotFound)
             .WithOpenApi();
@@ -55,7 +55,7 @@ public static class PagamentoExtensions
                 return useCaseResult.GetResult();
             }).WithTags(PagamentoTag)
             .WithSummary("Confirma o pagamento de um pedido pelo id do pagamento.")
-            .Produces<PagamentoResponseDTO>()
+            .Produces<PagamentoResponseDto>()
             .Produces<AppBadRequestProblemDetails>((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.NotFound)
             .WithOpenApi();
@@ -67,7 +67,7 @@ public static class PagamentoExtensions
                 return useCaseResult.GetResult();
             }).WithTags(PagamentoTag)
             .WithSummary("Obtenha os dados de um pagamento pelo id do pedido.")
-            .Produces<PagamentoResponseDTO>((int)HttpStatusCode.OK)
+            .Produces<PagamentoResponseDto>((int)HttpStatusCode.OK)
             .Produces<AppBadRequestProblemDetails>((int)HttpStatusCode.BadRequest)
             .Produces((int)HttpStatusCode.NotFound)
             .WithOpenApi();

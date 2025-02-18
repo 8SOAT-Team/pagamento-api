@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Pagamentos.Apps.UseCases;
 using Pagamentos.Infrastructure.Databases;
 using Testcontainers.MsSql;
 
@@ -40,6 +41,9 @@ public class FastOrderWebApplicationFactory : WebApplicationFactory<Program>, IA
                 options
                     .UseLazyLoadingProxies()
                     .UseSqlServer(_mssqlContainer.GetConnectionString()));
+
+            services.RemoveAll<IFornecedorPagamentoGateway>();
+            services.AddSingleton<IFornecedorPagamentoGateway, FakeFornecedorPagamentoGateway>();
         });
     }
 

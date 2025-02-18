@@ -24,7 +24,7 @@ public class ObterPagamentoByPedidoUseCaseTest
         // Arrange
         var pagamento = PagamentoBuilder.Build();
 
-        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(pagamento.Id))
+        _mockPagamentoGateway.Setup(gateway => gateway.FindPagamentoByPedidoIdAsync(pagamento.PedidoId))
             .ReturnsAsync([pagamento]);
 
         // Act

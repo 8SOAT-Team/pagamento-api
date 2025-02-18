@@ -38,7 +38,7 @@ public class ConfirmarStatusPagamentoUseCaseTest
         var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
-        Assert.Null(resultado);
+        Assert.Null(resultado.Value);
         var useCaseErrors = useCase.GetErrors();
         Assert.Single(useCaseErrors);
         Assert.Equal("Pagamento Externo não encontrado", useCaseErrors.FirstOrDefault().Description);
@@ -62,7 +62,7 @@ public class ConfirmarStatusPagamentoUseCaseTest
         var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
-        Assert.Null(resultado);
+        Assert.Null(resultado.Value);
         var useCaseErrors = useCase.GetErrors();
         Assert.Single(useCaseErrors);
         Assert.Equal("Pagamento não encontrado", useCaseErrors.FirstOrDefault().Description);
@@ -80,9 +80,14 @@ public class ConfirmarStatusPagamentoUseCaseTest
         mockPagamentoGateway.Setup(g => g.FindPagamentoByExternoIdAsync(pagamentoExternoId))
             .ReturnsAsync(pagamento);
 
+        mockPagamentoGateway.Setup(g => g.UpdatePagamentoAsync(pagamento))
+            .ReturnsAsync(pagamento);
+        
+        var fornecedorResponse = new FornecedorGetPagamentoResponseDto(pagamento.PagamentoExternoId, pagamento.Id,
+            StatusPagamento.Pendente);
         mockFornecedorPagamentoGateway
             .Setup(g => g.ObterPagamento(pagamento.PagamentoExternoId, It.IsAny<CancellationToken>()))
-            .ReturnsAsync((FornecedorGetPagamentoResponseDto?)null);
+            .ReturnsAsync(fornecedorResponse);
 
         var useCase = new ConfirmarStatusPagamentoUseCase(_mockLogger, mockFornecedorPagamentoGateway.Object,
             mockPagamentoGateway.Object);
@@ -91,7 +96,7 @@ public class ConfirmarStatusPagamentoUseCaseTest
         var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
-        Assert.NotNull(resultado);
+        Assert.NotNull(resultado.Value);
         Assert.Equal(pagamento.Id, resultado.Value.Id);
         mockPagamentoGateway.Verify(g => g.UpdatePagamentoAsync(It.IsAny<Pagamento>()), Times.Never);
     }
@@ -106,6 +111,9 @@ public class ConfirmarStatusPagamentoUseCaseTest
         var pagamento = PagamentoBuilder.CreateBuilder().ComPagamentoExternoId(pagamentoExternoId).Generate();
 
         mockPagamentoGateway.Setup(g => g.FindPagamentoByExternoIdAsync(pagamentoExternoId))
+            .ReturnsAsync(pagamento);
+        
+        mockPagamentoGateway.Setup(g => g.UpdatePagamentoAsync(pagamento))
             .ReturnsAsync(pagamento);
 
         var pagamentoExterno =
@@ -122,7 +130,7 @@ public class ConfirmarStatusPagamentoUseCaseTest
         var resultado = await useCase.ResolveAsync(pagamentoExternoId);
 
         // Assert
-        Assert.NotNull(resultado);
+        Assert.NotNull(resultado.Value);
         Assert.Equal(pagamento.Id, resultado.Value.Id);
         mockPagamentoGateway.Verify(g => g.UpdatePagamentoAsync(It.IsAny<Pagamento>()), Times.Once);
     }

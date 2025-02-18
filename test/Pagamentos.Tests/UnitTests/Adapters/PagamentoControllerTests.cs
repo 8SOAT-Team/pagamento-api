@@ -1,9 +1,11 @@
-﻿using CleanArch.UseCase.Options;
+﻿using Bogus;
+using CleanArch.UseCase.Options;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Pagamentos.Adapters.Controllers;
 using Pagamentos.Adapters.Types;
 using Pagamentos.Apps.UseCases;
+using Pagamentos.Apps.UseCases.Dtos;
 using Pagamentos.Domain.Entities;
 using Pagamentos.Tests.IntegrationTests.Builder;
 
@@ -15,6 +17,7 @@ public class PagamentoControllerTests
     private readonly Mock<IPagamentoGateway> _mockPagamentoGateway;
     private readonly Mock<IFornecedorPagamentoGateway> _mockFornecedorPagamentoGateway;
     private readonly PagamentoController _controller;
+    private readonly Faker _faker = new();
 
     public PagamentoControllerTests()
     {
@@ -30,19 +33,24 @@ public class PagamentoControllerTests
     {
         // Arrange
         var pagamentoId = Guid.NewGuid();
-        var status = StatusDoPagamento.Autorizado;
-        _mockPagamentoGateway.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()))
-            .ReturnsAsync(new Pagamento(pagamentoId, MetodoDePagamento.Pix, 100m, "idExterno"));
-        
-        _mockLogger.Setup(x => x.CreateLogger<ConfirmarPagamentoUseCase>())
+        const StatusDoPagamento status = StatusDoPagamento.Autorizado;
+        var pagamento = new Pagamento(pagamentoId, Guid.NewGuid(), MetodoDePagamento.Pix, 100m, "idExterno");
+        _mockPagamentoGateway.Setup(x => x.GetByIdAsync(It.Is<Guid>(x => x == pagamentoId)))
+            .ReturnsAsync(pagamento);
+
+        _mockPagamentoGateway.Setup(x => x.UpdatePagamentoAsync(It.Is<Pagamento>(x => x.Id == pagamento.Id)))
+            .ReturnsAsync(pagamento);
+
+        _mockLogger.Setup(x => x.CreateLogger(typeof(ConfirmarPagamentoUseCase).FullName!))
             .Returns(new Mock<ILogger<ConfirmarPagamentoUseCase>>().Object);
-        
+
+
         // Act
         var result = await _controller.ConfirmarPagamento(pagamentoId, status);
 
         // Assert
         Assert.NotNull(result);
-        Assert.IsType<Result<PagamentoResponseDTO>>(result);
+        Assert.IsType<Result<PagamentoResponseDto>>(result);
         Assert.Equal(pagamentoId, result.Value.Id);
     }
 
@@ -56,9 +64,9 @@ public class PagamentoControllerTests
             new(pedidoId, MetodoDePagamento.Pix, 100m, "idExterno")
         };
 
-        _mockLogger.Setup(x => x.CreateLogger<ObterPagamentoByPedidoUseCase>())
+        _mockLogger.Setup(x => x.CreateLogger(typeof(ObterPagamentoByPedidoUseCase).FullName!))
             .Returns(new Mock<ILogger<ObterPagamentoByPedidoUseCase>>().Object);
-        
+
         _mockPagamentoGateway.Setup(x => x.FindPagamentoByPedidoIdAsync(pedidoId)).ReturnsAsync(pagamentoList);
 
         // Act
@@ -66,7 +74,7 @@ public class PagamentoControllerTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.IsType<Result<List<PagamentoResponseDTO>>>(result);
+        Assert.IsType<Result<List<PagamentoResponseDto>>>(result);
         Assert.Single(result.Value); // Verifica se a lista tem um único item
     }
 
@@ -75,21 +83,29 @@ public class PagamentoControllerTests
     {
         // Arrange
         var dto = new IniciarPagamentoDtoBuilder().Generate();
-        var valorTotal = dto.Itens.Sum(x => x.PrecoUnitario * x.Quantidade);
-        
-        var pagamento =
-            new Pagamento(Guid.NewGuid(), dto.PedidoId, MetodoDePagamento.Master, valorTotal, "idExterno");
-        var useCaseResult = Any<Pagamento>.Some(pagamento);
-        var useCase = new Mock<IniciarPagamentoUseCase>();
-        useCase.Setup(x => x.ResolveAsync(dto)).ReturnsAsync(useCaseResult);
-        
+
+        _mockPagamentoGateway.Setup(x => x.FindPagamentoByPedidoIdAsync(dto.PedidoId))
+            .ReturnsAsync([]);
+
+        var fornecedorResponse =
+            new FornecedorCriarPagamentoResponseDto(Guid.NewGuid().ToString(), _faker.Internet.Url());
+        _mockFornecedorPagamentoGateway
+            .Setup(x => x.IniciarPagamento(It.Is<IniciarPagamentoDto>(x => x.PedidoId == dto.PedidoId),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(fornecedorResponse);
+
+        _mockPagamentoGateway.Setup(x => x.CreateAsync(It.Is<Pagamento>(x => x.PedidoId == dto.PedidoId)))
+            .ReturnsAsync(new Pagamento(dto.PedidoId, MetodoDePagamento.Pix, 100m, fornecedorResponse.IdExterno));
+
+        _mockLogger.Setup(x => x.CreateLogger(typeof(IniciarPagamentoUseCase).FullName!))
+            .Returns(new Mock<ILogger<IniciarPagamentoUseCase>>().Object);
+
         // Act
-        var result =
-            await _controller.IniciarPagamento(dto);
+        var result = await _controller.IniciarPagamento(dto);
 
         // Assert
         Assert.NotNull(result);
-        Assert.IsType<Result<PagamentoResponseDTO>>(result);
+        Assert.IsType<Result<PagamentoResponseDto>>(result);
         Assert.Equal(dto.PedidoId, result.Value!.PedidoId);
     }
 }

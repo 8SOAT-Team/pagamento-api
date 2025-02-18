@@ -31,20 +31,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9618b77e-8885-4441-9d16-6f591e38582e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/coverage_report.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Feature/Pagamento.Feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Feature/Pagamento.Feature.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/BDD/Step/PagamentoSteps.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/Pagamentos.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/Pagamentos.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/ControllerResultBuilderTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/ControllerResultBuilderTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/UseCasePresenterTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/UseCasePresenterTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/HostTest/FakeFornecedorPagamentoGateway.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pagamento/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/IPagamentoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/IPagamentoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoResponseDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoResponseDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Pagamentos.Adapters.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Pagamentos.Adapters.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Adapters/Presenters/PagamentoPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Adapters/Presenters/PagamentoPresenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Api/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Api/Endpoints/PagamentoExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Api/Endpoints/PagamentoExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Apps/UseCases/IFornecedorPagamentoGateway.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Apps/UseCases/IFornecedorPagamentoGateway.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Databases/CacheContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Databases/CacheContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Pagamentos/FornecedorPagamentoGateway.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pagamentos.Infrastructure/Pagamentos/FornecedorPagamentoGateway.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/IniciarPagamentoDtoBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/IniciarPagamentoDtoBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/HostTest/FastOrderWebApplicationFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/HostTest/FastOrderWebApplicationFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,29 +74,36 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/596acbbf19634033ab5b90a3b714c3563c00/30/b8d24ab1/AnyExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/596acbbf19634033ab5b90a3b714c3563c00/37/5b4b3442/UseCaseBase`3.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5fcd0199d7a64ec5820918be715ad11910328/16/49969006/LoggerFactoryExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5fcd0199d7a64ec5820918be715ad11910328/1a/f4ab928a/Logger`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5fcd0199d7a64ec5820918be715ad11910328/8d/2beffc64/ILoggerFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/69c8b1140ef24cccba5670e39605f8f1208b0/3f/4f28538c/EndpointMetadataApiExplorerServiceCollectionExtens.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/81427bb79ca4dd8b7472ec794faaa3c413e68ebdba20182846a49537f18fca64/SwaggerGenServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/93b441a9e8201c5bdfa1b1fdc8061a77b86ccbb8566d7bae85036aba8c618f7/IDatabaseAsync.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9a6b1457cbcf17db31a383ba49ef9bcc786cf3ef77146d997eee499b27a46d/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce37be1a06b16c6faa02038d2cc477dd3bca5b217ceeb41c5f2ad45c1bf9/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamento.Api/Endpoints/PagamentoExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/src/Pagamentos.Api/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/BDD/Step/CategoriaSteps.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/IntegrationTests/FastOrder_PagamentoExtensionsTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamento.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/IntegrationTests/Builder/PagamentoDTOBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/IntegrationTests/PagamentoEndpointTest.cs" root0="SKIP_HIGHLIGHTING" />
@@ -102,17 +118,25 @@
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/CacheContextTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoControllerTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoGateway.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Adapters/PagamentoPresenterTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Entities/PagamentoTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarPagamentoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ConfirmarStatusPagamentoUseCaseTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/IniciarPagamentoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="SWEA" />
@@ -132,16 +156,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Pagamento: http.executor": "Debug",
+    "02d6f258-014f-4b93-99ea-5ef6dcb30519.executor": "Debug",
     "50d97d2d-ddad-4a5c-aa9d-cc6838aa9546.executor": "Debug",
+    "57d0cecc-a39f-4985-b0fd-b995d29fd155.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging fix/project-issues",
+    "git-widget-placeholder": "fix/project-issues",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "RiderDotCoverFilteringPageId",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -309,16 +335,109 @@
       <workItem from="1739634946411" duration="672000" />
       <workItem from="1739721347225" duration="347000" />
       <workItem from="1739721725496" duration="15539000" />
-      <workItem from="1739836052610" duration="425000" />
+      <workItem from="1739836052610" duration="5735000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="150" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="276" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Api 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Api 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Api 84% 12/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="FrameworksAndDrivers 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Api 85% 15/100" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Api 84% 12/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamento 100% 0/23" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 81% 218/1128" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="src 79% 103/497" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Pagamentos.Adapters 70% 55/181" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
+  </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/Pagamentos.Adapters/Controllers/PagamentoController.cs</url>
+          <line>45</line>
+          <properties documentPath="C:\repos\FIAP\pagamento-api\src\Pagamentos.Adapters\Controllers\PagamentoController.cs" containingFunctionPresentation="Method 'IniciarPagamento'">
+            <startOffsets>
+              <option value="1958" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2026" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

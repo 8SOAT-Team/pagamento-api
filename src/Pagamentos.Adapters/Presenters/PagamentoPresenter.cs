@@ -5,10 +5,10 @@ namespace Pagamentos.Adapters.Presenters;
 
 public static class PagamentoPresenter
 {
-    public static List<PagamentoResponseDTO> ToListPagamentoDto(List<Pagamento> pagamentos)
-        => pagamentos.Select(p => ToPagamentoDto(p)).ToList();
+    public static List<PagamentoResponseDto> ToListPagamentoDto(List<Pagamento> pagamentos)
+        => pagamentos.Select(ToPagamentoDto).ToList();
 
-    public static PagamentoResponseDTO ToPagamentoDto(Pagamento pagamento)
+    public static PagamentoResponseDto ToPagamentoDto(Pagamento pagamento)
         => new(pagamento.Id,
             (MetodosDePagamento)pagamento.MetodoDePagamento,
             (StatusDoPagamento)pagamento.Status,

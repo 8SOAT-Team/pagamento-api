@@ -78,7 +78,8 @@ public class CacheContext(IConnectionMultiplexer connectionMultiplexer, JsonSeri
 
     public async Task<Result<string>> InvalidateCacheAsync(string key)
     {
-        _ = await _database.StringGetDeleteAsync(key);
+        var keyExists = await _database.KeyExistsAsync(key);
+        if (keyExists) await _database.KeyDeleteAsync(key);
         return Result<string>.Empty();
     }
 }

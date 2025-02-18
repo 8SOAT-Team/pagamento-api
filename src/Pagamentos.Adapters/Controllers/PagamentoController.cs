@@ -11,13 +11,13 @@ public class PagamentoController(
     IPagamentoGateway pagamentoGateway,
     IFornecedorPagamentoGateway fornecedorPagamentoGateway) : IPagamentoController
 {
-    public async Task<Result<PagamentoResponseDTO>> ConfirmarPagamento(Guid pagamentoId, StatusDoPagamento status)
+    public async Task<Result<PagamentoResponseDto>> ConfirmarPagamento(Guid pagamentoId, StatusDoPagamento status)
     {
         var useCase =
             new ConfirmarPagamentoUseCase(loggerFactory.CreateLogger<ConfirmarPagamentoUseCase>(), pagamentoGateway);
         var useCaseResult = await useCase.ResolveAsync(new ConfirmarPagamentoDto(pagamentoId, (StatusPagamento)status));
 
-        return ControllerResultBuilder<PagamentoResponseDTO, Pagamento>
+        return ControllerResultBuilder<PagamentoResponseDto, Pagamento>
             .ForUseCase(useCase)
             .WithInstance(pagamentoId)
             .WithResult(useCaseResult)
@@ -25,13 +25,13 @@ public class PagamentoController(
             .Build();
     }
 
-    public async Task<Result<List<PagamentoResponseDTO>>> GetPagamentoByPedidoAsync(Guid pedidoId)
+    public async Task<Result<List<PagamentoResponseDto>>> GetPagamentoByPedidoAsync(Guid pedidoId)
     {
         var useCase = new ObterPagamentoByPedidoUseCase(loggerFactory.CreateLogger<ObterPagamentoByPedidoUseCase>(),
             pagamentoGateway);
         var useCaseResult = await useCase.ResolveAsync(pedidoId);
 
-        return ControllerResultBuilder<List<PagamentoResponseDTO>, List<Pagamento>>
+        return ControllerResultBuilder<List<PagamentoResponseDto>, List<Pagamento>>
             .ForUseCase(useCase)
             .WithInstance(pedidoId)
             .WithResult(useCaseResult)
@@ -39,13 +39,13 @@ public class PagamentoController(
             .Build();
     }
 
-    public async Task<Result<PagamentoResponseDTO>> IniciarPagamento(IniciarPagamentoDto iniciarPagamentoDto)
+    public async Task<Result<PagamentoResponseDto>> IniciarPagamento(IniciarPagamentoDto iniciarPagamentoDto)
     {
         var useCase = new IniciarPagamentoUseCase(loggerFactory.CreateLogger<IniciarPagamentoUseCase>(),
             pagamentoGateway, fornecedorPagamentoGateway);
         var useCaseResult = await useCase.ResolveAsync(iniciarPagamentoDto);
 
-        return ControllerResultBuilder<PagamentoResponseDTO, Pagamento>
+        return ControllerResultBuilder<PagamentoResponseDto, Pagamento>
             .ForUseCase(useCase)
             .WithInstance(iniciarPagamentoDto.PedidoId)
             .WithResult(useCaseResult)
@@ -53,14 +53,14 @@ public class PagamentoController(
             .Build();
     }
 
-    public async Task<Result<PagamentoResponseDTO>> ReceberWebhookPagamento(string pagamentoExternoId)
+    public async Task<Result<PagamentoResponseDto>> ReceberWebhookPagamento(string pagamentoExternoId)
     {
         var useCase =
             new ConfirmarStatusPagamentoUseCase(loggerFactory.CreateLogger<ConfirmarStatusPagamentoUseCase>(),
                 fornecedorPagamentoGateway, pagamentoGateway);
         var useCaseResult = await useCase.ResolveAsync(pagamentoExternoId);
 
-        return ControllerResultBuilder<PagamentoResponseDTO, Pagamento>
+        return ControllerResultBuilder<PagamentoResponseDto, Pagamento>
             .ForUseCase(useCase)
             .WithInstance(pagamentoExternoId)
             .WithResult(useCaseResult)

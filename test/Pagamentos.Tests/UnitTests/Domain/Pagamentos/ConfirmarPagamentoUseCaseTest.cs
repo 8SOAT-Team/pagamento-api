@@ -27,7 +27,7 @@ public class ConfirmarPagamentoUseCaseTest
         var resultado = await useCase.ResolveAsync(dto);
 
         // Assert
-        Assert.Null(resultado);
+        Assert.Null(resultado.Value);
         var useCaseErrors = useCase.GetErrors();
         Assert.Single(useCaseErrors);
         Assert.Equal("Pagamento não encontrado", useCaseErrors.FirstOrDefault().Description);
@@ -38,11 +38,11 @@ public class ConfirmarPagamentoUseCaseTest
     {
         // Arrange
         var pagamento = PagamentoBuilder.Build();
-
         var mockLogger = new Mock<ILogger<ConfirmarPagamentoUseCase>>();
         var mockPagamentoGateway = new Mock<IPagamentoGateway>();
         var dto = new ConfirmarPagamentoDto(pagamento.Id, StatusPagamento.Autorizado);
         mockPagamentoGateway.Setup(g => g.GetByIdAsync(pagamento.Id)).ReturnsAsync(pagamento);
+        mockPagamentoGateway.Setup(g => g.UpdatePagamentoAsync(pagamento)).ReturnsAsync(pagamento);
 
         var useCase = new ConfirmarPagamentoUseCase(mockLogger.Object, mockPagamentoGateway.Object);
         
@@ -50,7 +50,7 @@ public class ConfirmarPagamentoUseCaseTest
         var resultado = await useCase.ResolveAsync(dto);
         
         // Assert
-        Assert.NotNull(resultado);
+        Assert.NotNull(resultado.Value);
         Assert.Equal(StatusPagamento.Autorizado, resultado.Value!.Status);
     }
 }

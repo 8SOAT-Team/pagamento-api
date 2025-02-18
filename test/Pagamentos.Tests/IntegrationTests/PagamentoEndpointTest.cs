@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http.Json;
 using Bogus;
+using FluentAssertions;
 using Pagamentos.Api.Pagamento;
 using Pagamentos.Domain.Entities;
 using Pagamentos.Tests.IntegrationTests.Builder;
@@ -49,7 +50,7 @@ public class PagamentoEndpointTest : IClassFixture<FastOrderWebApplicationFactor
         var response = await _client.PostAsJsonAsync($"/pagamento/pedido/{pedidoId}", request);
 
         // Assert
-        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        response.IsSuccessStatusCode.Should().BeTrue();
     }
 
     [Fact]

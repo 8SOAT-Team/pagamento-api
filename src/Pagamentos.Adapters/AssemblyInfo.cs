@@ -1,6 +1,3 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using System.Runtime.CompilerServices;
 
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
+[assembly: InternalsVisibleTo("Pagamentos.Tests")]

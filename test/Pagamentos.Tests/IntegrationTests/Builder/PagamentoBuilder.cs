@@ -9,21 +9,35 @@ internal sealed class PagamentoBuilder : Faker<Pagamento>
     {
         CustomInstantiator(f => new Pagamento(
             pedidoId: f.Random.Guid(),
-            metodoDePagamento: f.PickRandom<MetodoDePagamento>(),
+            metodoDePagamento: MetodoDePagamento.Pix,
             valorTotal: f.Finance.Amount(1),
             pagamentoExternoId: null
         ));
+
+        RuleFor(x => x.Status, StatusPagamento.Pendente);
     }
 
     public PagamentoBuilder ComStatus(StatusPagamento status)
     {
-        RuleFor(x => x.Status, f => status);
+        RuleFor(x => x.Status, status);
         return this;
     }
-    
+
     public PagamentoBuilder ComPagamentoExternoId(string pagamentoExternoId)
     {
-        RuleFor(x => x.PagamentoExternoId, f => pagamentoExternoId);
+        RuleFor(x => x.PagamentoExternoId, pagamentoExternoId);
+        return this;
+    }
+
+    public PagamentoBuilder ComPagamentoUrl(string url)
+    {
+        RuleFor(x => x.UrlPagamento, url);
+        return this;
+    }
+
+    public PagamentoBuilder ComPedidoId(Guid pedidoId)
+    {
+        RuleFor(x => x.PedidoId, pedidoId);
         return this;
     }
 

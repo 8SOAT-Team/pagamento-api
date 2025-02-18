@@ -5,8 +5,8 @@ namespace Pagamentos.Adapters.Controllers;
 
 public interface IPagamentoController
 {
-    Task<Result<List<PagamentoResponseDTO>>> GetPagamentoByPedidoAsync(Guid pedidoId);
-    Task<Result<PagamentoResponseDTO>> ConfirmarPagamento(Guid pagamentoId, StatusDoPagamento status);
-    Task<Result<PagamentoResponseDTO>> IniciarPagamento(IniciarPagamentoDto iniciarPagamentoPagadorDto);
-    Task<Result<PagamentoResponseDTO>> ReceberWebhookPagamento(string pagamentoExternoId);
+    Task<Result<List<PagamentoResponseDto>>> GetPagamentoByPedidoAsync(Guid pedidoId);
+    Task<Result<PagamentoResponseDto>> ConfirmarPagamento(Guid pagamentoId, StatusDoPagamento status);
+    Task<Result<PagamentoResponseDto>> IniciarPagamento(IniciarPagamentoDto iniciarPagamentoPagadorDto);
+    Task<Result<PagamentoResponseDto>> ReceberWebhookPagamento(string pagamentoExternoId);
 }

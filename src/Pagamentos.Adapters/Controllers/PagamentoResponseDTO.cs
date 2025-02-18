@@ -1,9 +1,9 @@
 ﻿namespace Pagamentos.Adapters.Controllers;
 
-public record PagamentoResponseDTO(
+public record PagamentoResponseDto(
     Guid Id,
     MetodosDePagamento MetodoDePagamento,
-    StatusDoPagamento status,
+    StatusDoPagamento Status,
     decimal ValorTotal,
     string PagamentoExternoId,
     string? UrlPagamento,

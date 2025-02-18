@@ -8,6 +8,6 @@ public interface IFornecedorPagamentoGateway
     Task<FornecedorCriarPagamentoResponseDto> IniciarPagamento(IniciarPagamentoDto request,
         CancellationToken cancellationToken = default);
 
-    Task<FornecedorGetPagamentoResponseDto?> ObterPagamento(string idExterno,
+    Task<FornecedorGetPagamentoResponseDto> ObterPagamento(string idExterno,
         CancellationToken cancellationToken = default);
 }
