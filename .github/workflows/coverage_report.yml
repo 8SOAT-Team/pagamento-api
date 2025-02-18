@@ -36,7 +36,7 @@ jobs:
         with:
           label: Unit Test Coverage
           color: brightgreen
-          path: ./test/Pagamento.Tests/TestResults/coverage.opencover.xml
+          path: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
           gist-filename: pagamento-code-coverage-json
           gist-id: 70638427f9d50f6334e3d96af10f43a9
           gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
@@ -53,7 +53,7 @@ jobs:
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.4.3
         with:
-          reports: ./test/Pagamento.Tests/TestResults/coverage.opencover.xml
+          reports: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
           targetdir: coveragereport
           reporttypes: Html_Dark;Badges
 
