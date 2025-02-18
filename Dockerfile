@@ -8,10 +8,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY ["src/pagamentos.Api/pagamentos.Api.csproj", "pagamentos.Api/"]
-COPY ["src/pagamentos.Domain/pagamentos.Domain.csproj", "pagamentos.Domain/"]
-COPY ["src/pagamentos.Apps/pagamentos.Apps.csproj", "pagamentos.Apps/"]
-COPY ["src/pagamentos.Adapters/pagamentos.Adapters.csproj", "pagamentos.Adapters/"]
+COPY ["src/Pagamentos.Api/Pagamentos.Api.csproj", "pagamentos.Api/"]
+COPY ["src/Pagamentos.Domain/Pagamentos.Domain.csproj", "pagamentos.Domain/"]
+COPY ["src/Pagamentos.Apps/Pagamentos.Apps.csproj", "pagamentos.Apps/"]
+COPY ["src/Pagamentos.Adapters/Pagamentos.Adapters.csproj", "pagamentos.Adapters/"]
 COPY ["src/Pagamentos.Infrastructure/Pagamentos.Infrastructure.csproj", "Pagamentos.Infrastructure/"]
 
 RUN dotnet restore
@@ -29,4 +29,3 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "pagamentos.Api.dll"]
-
