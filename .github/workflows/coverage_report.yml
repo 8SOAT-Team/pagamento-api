@@ -38,7 +38,7 @@ jobs:
           color: brightgreen
           path: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
           gist-filename: pagamento-code-coverage.json
-          gist-id: 87b5cd5307913b1bac586c27b7e9b324
+          gist-id: 70638427f9d50f6334e3d96af10f43a9
           gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
 
       - name: Print code coverage
