@@ -45,14 +45,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:latest \
-            -t ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:${{ github.sha }} \
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:${{ github.sha }} \
             .
 
       - name: Push Docker images to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/Pagamentos-api:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
