@@ -14,18 +14,17 @@ COPY ["src/Pagamentos.Apps/Pagamentos.Apps.csproj", "pagamentos.Apps/"]
 COPY ["src/Pagamentos.Adapters/Pagamentos.Adapters.csproj", "pagamentos.Adapters/"]
 COPY ["src/Pagamentos.Infrastructure/Pagamentos.Infrastructure.csproj", "Pagamentos.Infrastructure/"]
 
-RUN dotnet restore
+RUN dotnet restore "Pagamento.Api/Pagamento.Api.csproj"
 
 COPY . .
-WORKDIR "/src/pagamentos.Api"
-
-RUN dotnet build "pagamentos.Api.csproj" -c $BUILD_CONFIGURATION --no-dependencies -o /app/build
+WORKDIR "/src/Pagamento.Api"
+RUN dotnet build "Pagamento.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "pagamentos.Api.csproj" -c $BUILD_CONFIGURATION --no-dependencies -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Pagamento.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "pagamentos.Api.dll"]
+ENTRYPOINT ["dotnet", "Pagamento.Api.dll"]
