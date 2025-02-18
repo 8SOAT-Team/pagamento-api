@@ -28,7 +28,7 @@ jobs:
         run: dotnet build Pagamento.sln --configuration Release
 
       - name: Test
-        run: dotnet test Pagamento.sln -c Release --no-build --no-restore --verbosity normal --settings coverlet.runsettings.xml -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --environment Test
+        run: dotnet test Pagamento.sln -c Release --no-build --no-restore --verbosity normal -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --environment Test -p:Exclude="[Pagamentos.Infrastructure?]*"
 
       - name: Create Test Coverage Badge
         uses: simon-k/dotnet-code-coverage-badge@v1.0.0

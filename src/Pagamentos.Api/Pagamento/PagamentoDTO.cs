@@ -2,7 +2,7 @@
 using Pagamentos.Domain.Entities;
 
 namespace Pagamentos.Api.Pagamento;
-
+[ExcludeFromCodeCoverage]
 public record PagamentoDTO
 {
     public PagamentoDTO(MetodoDePagamento metodoDePagamento)
