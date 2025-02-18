@@ -111,10 +111,10 @@
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Pagamentos/ObterPagamentoByPedidoUseCaseTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/repos/FIAP/pagamento-api/test/Pagamentos.Tests/UnitTests/Domain/Stubs/PagamentoStubBuilder.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="SWEA" />
@@ -139,7 +139,7 @@
     "57d0cecc-a39f-4985-b0fd-b995d29fd155.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "fix/project-issues",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
