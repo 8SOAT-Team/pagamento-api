@@ -92,4 +92,4 @@ jobs:
         run: |
           kubectl apply -f iac/kubernetes/namespace.yaml
           kubectl apply -f iac/kubernetes
-          kubectl rollout status deployment/Pagamentos-dep -n fast-order
+          kubectl rollout status deployment/pagamentos-dep -n fast-order
