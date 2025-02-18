@@ -12,7 +12,7 @@ COPY ["src/pagamentos.Api/pagamentos.Api.csproj", "pagamentos.Api/"]
 COPY ["src/pagamentos.Domain/pagamentos.Domain.csproj", "pagamentos.Domain/"]
 COPY ["src/pagamentos.Apps/pagamentos.Apps.csproj", "pagamentos.Apps/"]
 COPY ["src/pagamentos.Adapters/pagamentos.Adapters.csproj", "pagamentos.Adapters/"]
-COPY ["src/Pagamentos.Infrastructure/Pagamentos.Pagamentos.Infrastructure.csproj", "pagamentos.Infrastructure/"]
+COPY ["src/Pagamentos.Infrastructure/Pagamentos.Infrastructure.csproj", "Pagamentos.Infrastructure/"]
 
 RUN dotnet restore
 
