@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: pagamento-hpa
+  name: pagamentos-hpa
   namespace: fast-order
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: pagamento-dep
+    name: pagamentos-dep
   minReplicas: 1
   maxReplicas: 10
   metrics:
