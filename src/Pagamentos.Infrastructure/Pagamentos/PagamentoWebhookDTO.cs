@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 namespace Pagamentos.Infrastructure.Pagamentos;
-
+[ExcludeFromCodeCoverage]
 public record PagamentoWebhookDTO
 {
     public long Id { get; set; }

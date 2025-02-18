@@ -1,7 +1,7 @@
 ﻿using Pagamentos.Domain.Entities;
 
 namespace Pagamentos.Apps.UseCases.Dtos;
-
+[ExcludeFromCodeCoverage]
 public record IniciarPagamentoDto
 {
     public Guid PedidoId { get; init; }
@@ -12,7 +12,7 @@ public record IniciarPagamentoDto
 
     public IniciarPagamentoPagadorDto? Pagador { get; init; }
 }
-
+[ExcludeFromCodeCoverage]
 public record IniciarPagamentoItemDto
 {
     public Guid Id { get; init; }
@@ -21,7 +21,7 @@ public record IniciarPagamentoItemDto
     public int Quantidade { get; init; }
     public decimal PrecoUnitario { get; init; }
 }
-
+[ExcludeFromCodeCoverage]
 public record IniciarPagamentoPagadorDto
 {
     public string Email { get; init; }

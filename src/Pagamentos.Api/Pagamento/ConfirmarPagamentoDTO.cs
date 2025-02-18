@@ -2,5 +2,6 @@
 
 namespace Pagamentos.Api.Pagamento
 {
+    [ExcludeFromCodeCoverage]
     public record ConfirmarPagamentoDTO(StatusDoPagamento Status);
 }

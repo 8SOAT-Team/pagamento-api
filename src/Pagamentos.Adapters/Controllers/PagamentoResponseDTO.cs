@@ -1,5 +1,5 @@
 ﻿namespace Pagamentos.Adapters.Controllers;
-
+[ExcludeFromCodeCoverage]
 public record PagamentoResponseDto(
     Guid Id,
     MetodosDePagamento MetodoDePagamento,
