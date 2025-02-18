@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pagamento-dep
+  name: pagamentos-dep
   namespace: fast-order
   labels:
-    app: pagamento-api
+    app: pagamentos-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pagamento-api
+      app: pagamentos-api
   template:
     metadata:
       labels:
-        app: pagamento-api
+        app: pagamentos-api
     spec:
       containers:
-      - name: pagamento-api-cont
-        image: sickbanger/pagamento-api:latest
+      - name: pagamentos-api-cont
+        image: sickbanger/pagamentos-api:latest
         ports:
         - containerPort: 5271
         - containerPort: 7205
         envFrom:
           - configMapRef:
-              name: pagamento-api-configmap
+              name: pagamentos-api-configmap
         livenessProbe:
           httpGet:
             path: /health

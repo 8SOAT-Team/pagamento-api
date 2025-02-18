@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: pagamento-api-configmap
+  name: pagamentos-api-configmap
   namespace: fast-order
 data:
   ASPNETCORE_ENVIRONMENT: "Production"
