@@ -5,9 +5,10 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
+    </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pagamento.Domain\Pagamento.Domain.csproj" />
+        <ProjectReference Include="..\Pagamento.Domain\Pagamento.Domain.csproj" />
     </ItemGroup>
     
     <ItemGroup>
