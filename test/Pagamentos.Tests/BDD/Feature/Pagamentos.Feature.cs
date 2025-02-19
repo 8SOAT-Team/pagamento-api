@@ -40,8 +40,8 @@ namespace Pagamentos.Tests.BDD.Feature
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "BDD/Feature", "Gerenciamento de Pagamentos", "  Para garantir a consistência dos dados\n  Como um desenvolvedor\n  Quero validar " +
-                    "as regras de negócio ao criar um pagamento", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt-BR"), "BDD/Feature", "Gerenciamento de Pagamentos", "  Para garantir a consistência dos dados\r\n  Como um desenvolvedor\r\n  Quero valida" +
+                    "r as regras de negócio ao criar um pagamento", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
