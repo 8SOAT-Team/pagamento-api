@@ -47,8 +47,6 @@ app.UseSwaggerUI(options =>
 
 app.AddEndpointPagamentos();
 
-app.UseHttpsRedirection();
-
 app.Run();
 
 public partial class Program { }
