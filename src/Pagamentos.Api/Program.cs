@@ -31,7 +31,6 @@ Log.Logger = new LoggerConfiguration()
 
 var app = builder.Build();
 
-//Executar as migracoes pendentes
 if (EnvConfig.RunMigrationsOnStart)
 {
     await MigracoesPendentes.ExecuteMigrationAsync(app);
