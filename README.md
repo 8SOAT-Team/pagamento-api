@@ -179,7 +179,7 @@ kubectl get pods -n fast-order
 │   ├── coverage-report.yml         # Workflow de testes e cobertura
 │   ├── deploy-eks.yml              # Workflow de deploy no EKS
 
-```sh
+```
 
 
 ## Autores
