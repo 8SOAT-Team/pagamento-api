@@ -11,6 +11,3 @@ spec:
     - port: 80
       name: http
       targetPort: 5271
-    - port: 443
-      name: https
-      targetPort: 7205
