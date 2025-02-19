@@ -60,11 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BDD\Feature\" />
-    <Folder Include="BDD\Step\" />
-  </ItemGroup>
-
-  <ItemGroup>
       <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
   </ItemGroup>
 </Project>
