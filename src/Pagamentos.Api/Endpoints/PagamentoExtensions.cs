@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Pagamentos.Adapters.Controllers;
-using Pagamentos.Adapters.Types;
 using Pagamentos.Api.Pagamento;
+using Pagamentos.Apps.Types;
 using Pagamentos.Apps.UseCases.Dtos;
 using Pagamentos.Domain.Entities;
 

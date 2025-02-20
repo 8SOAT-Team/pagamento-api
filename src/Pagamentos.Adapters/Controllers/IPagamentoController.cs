@@ -1,4 +1,4 @@
-﻿using Pagamentos.Adapters.Types;
+﻿using Pagamentos.Apps.Types;
 using Pagamentos.Apps.UseCases.Dtos;
 
 namespace Pagamentos.Adapters.Controllers;

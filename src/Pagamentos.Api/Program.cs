@@ -46,6 +46,7 @@ app.UseSwaggerUI(options =>
 });
 
 app.AddEndpointPagamentos();
+app.AddEndpointWebhook();
 
 app.MapGet("/health", () => Results.Ok("Healthy"));
 

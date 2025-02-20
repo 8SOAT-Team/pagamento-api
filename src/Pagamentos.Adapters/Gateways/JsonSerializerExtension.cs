@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
-using Pagamentos.Adapters.Types;
+using Pagamentos.Apps.Types;
 
 namespace Pagamentos.Adapters.Gateways;
 

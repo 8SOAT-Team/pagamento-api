@@ -54,10 +54,8 @@ public class FornecedorPagamentoGateway(
     {
         var options = GetRequestOptions(EnvConfig.PagamentoFornecedorAccessToken);
         var response = await paymentClient.GetAsync(long.Parse(idExterno), options, cancellationToken);
-        var pagamentoId = response.ExternalReference;
 
-        return new FornecedorGetPagamentoResponseDto(response.Id.ToString()!, Guid.Parse(pagamentoId),
-            GetStatusPagamento(response.Status));
+        return new FornecedorGetPagamentoResponseDto(response.ExternalReference, GetStatusPagamento(response.Status));
     }
 
     private static string GetPaymentMethodType(MetodoDePagamento metodoDePagamento)

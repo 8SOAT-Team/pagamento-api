@@ -18,6 +18,6 @@ public class FakeFornecedorPagamentoGateway : IFornecedorPagamentoGateway
         CancellationToken cancellationToken = default)
     {
         return Task.FromResult(
-            new FornecedorGetPagamentoResponseDto(idExterno, Guid.NewGuid(), StatusPagamento.Autorizado));
+            new FornecedorGetPagamentoResponseDto(Guid.NewGuid().ToString(), StatusPagamento.Autorizado));
     }
 }

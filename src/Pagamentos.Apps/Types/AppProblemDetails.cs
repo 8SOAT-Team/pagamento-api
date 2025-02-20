@@ -1,4 +1,4 @@
-﻿namespace Pagamentos.Adapters.Types;
+﻿namespace Pagamentos.Apps.Types;
 
 public record AppProblemDetails(string Type, string Title, string Status, string Detail, string Instance)
 {
