@@ -9,3 +9,5 @@ data:
   DB_CONNECTION_STRING: "Server=rds-fastorderdb-tf.c3qig4kemrm8.us-east-1.rds.amazonaws.com,1433;Database=pagamentoDB;User Id=sa;Password=tech#2024;Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;"
   DISTRIBUTED_CACHE_URL: "soat-cache.uwgp5c.ng.0001.use1.cache.amazonaws.com:6379"
   RUN_MIGRATIONS_ON_START: "true"
+  PAGAMENTO_WEBHOOK_URL: "https://fast-order-mp.free.beeceptor.com/"
+  PAGAMENTO_FORNECEDOR_ACCESS_TOKEN: "TEST-519600520864773-101020-3f979789d2b40227c2bbc32226015aba-223156837"
