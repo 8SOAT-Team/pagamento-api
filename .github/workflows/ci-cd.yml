@@ -9,11 +9,6 @@ on:
 jobs:
   test-and-coverage-with-report:
     runs-on: ubuntu-latest
-    env:
-      DISTRIBUTED_CACHE_URL: "redis://localhost:6379"
-      ASPNETCORE_ENVIRONMENT: "Test"
-      RUN_MIGRATIONS_ON_START: "true"
-      PEDIDOS_API_URL: "http://localhost:5000"
 
     steps:
       - name: Checkout code
@@ -27,13 +22,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore Producao.sln
+        run: dotnet restore Pagamento.sln
 
       - name: Build project
-        run: dotnet build Producao.sln --configuration Release
+        run: dotnet build Pagamento.sln --configuration Release
 
       - name: Test
-        run: dotnet test Producao.sln -c Release --no-build --no-restore --verbosity normal -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover 
+        run: dotnet test Pagamento.sln -c Release --no-build --no-restore --verbosity normal -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --environment Test -p:Exclude="[Pagamentos.Infrastructure?]*"
 
       - name: Create Test Coverage Badge
         uses: simon-k/dotnet-code-coverage-badge@v1.0.0
@@ -41,9 +36,9 @@ jobs:
         with:
           label: Unit Test Coverage
           color: brightgreen
-          path: ./test/Producao.Tests/TestResults/coverage.opencover.xml
-          gist-filename: producao-code-coverage.json
-          gist-id: 87b5cd5307913b1bac586c27b7e9b324
+          path: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
+          gist-filename: pagamento-code-coverage.json
+          gist-id: 70638427f9d50f6334e3d96af10f43a9
           gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
 
       - name: Print code coverage
@@ -58,7 +53,7 @@ jobs:
       - name: ReportGenerator
         uses: danielpalme/ReportGenerator-GitHub-Action@5.4.3
         with:
-          reports: ./test/Producao.Tests/TestResults/coverage.opencover.xml
+          reports: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
           targetdir: coveragereport
           reporttypes: Html_Dark;Badges
 
@@ -70,7 +65,7 @@ jobs:
 
   build-push-deploy:
     runs-on: ubuntu-latest
-    needs: test-and-coverage-with-report  # Só executa se os testes passarem
+    needs: test-and-coverage-with-report
 
     steps:
       - name: Checkout repository
@@ -79,7 +74,7 @@ jobs:
           fetch-depth: 0
 
       - name: Debug - Listando arquivos na API
-        run: ls -R src/Producao.Api
+        run: ls -R src/Pagamentos.Api
 
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
@@ -88,14 +83,14 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd src/Producao.Api
-          dotnet restore Producao.Api.csproj
+          cd src/Pagamentos.Api
+          dotnet restore Pagamentos.Api.csproj
 
       - name: Build and publish
         run: |
-          cd src/Producao.Api
-          dotnet build Producao.Api.csproj -c Release --no-restore
-          dotnet publish Producao.Api.csproj -c Release -o app/publish /p:UseAppHost=false
+          cd src/Pagamentos.Api
+          dotnet build Pagamentos.Api.csproj -c Release --no-restore
+          dotnet publish Pagamentos.Api.csproj -c Release -o app/publish /p:UseAppHost=false
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -109,14 +104,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/producao-api:latest \
-            -t ${{ secrets.DOCKER_USERNAME }}/producao-api:${{ github.sha }} \
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:${{ github.sha }} \
             .
 
       - name: Push Docker images to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/producao-api:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/producao-api:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:${{ github.sha }}
 
       - name: Install kubectl
         run: |
@@ -148,4 +143,4 @@ jobs:
         run: |
           kubectl apply -f iac/kubernetes/namespace.yaml
           kubectl apply -f iac/kubernetes
-          kubectl rollout status deployment/producao-dep -n fast-order
+          kubectl rollout status deployment/pagamentos-dep -n fast-order
