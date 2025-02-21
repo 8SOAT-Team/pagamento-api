@@ -53,6 +53,7 @@ app.UseSwaggerUI(options =>
 
 app.AddEndpointPagamentos();
 app.AddEndpointWebhook();
+app.UseHealthChecks("/health");
 
 app.Run();
 
