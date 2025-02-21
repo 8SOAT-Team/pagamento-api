@@ -11,11 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ASPNETCORE_ENVIRONMENT: "Test"
-      ASPNETCORE_URLS: "http://+:5271"
-      DB_CONNECTION_STRING: "Server=rds-fastorderdb-tf.c3qig4kemrm8.us-east-1.rds.amazonaws.com,1433;Database=pagamentoDB;User Id=sa;Password=tech#2024;Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;"
-      DISTRIBUTED_CACHE_URL: "soat-cache.uwgp5c.ng.0001.use1.cache.amazonaws.com:6379"
+      DISTRIBUTED_CACHE_URL: "redis://localhost:6379"
       RUN_MIGRATIONS_ON_START: "true"
-      PAGAMENTO_WEBHOOK_URL: "https://localhost"
+      PAGAMENTO_WEBHOOK_URL: "http://localhost:5271"
       PAGAMENTO_FORNECEDOR_ACCESS_TOKEN: "TEST"
 
     steps:
