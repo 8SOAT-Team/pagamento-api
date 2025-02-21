@@ -1,4 +1,4 @@
-﻿using Pagamentos.Adapters.Types;
+﻿using Pagamentos.Apps.Types;
 
 namespace Pagamentos.Adapters.Gateways;
 

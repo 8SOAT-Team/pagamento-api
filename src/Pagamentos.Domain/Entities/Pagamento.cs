@@ -1,23 +1,29 @@
 ﻿using System.Collections.Immutable;
 using System.Text.Json.Serialization;
+using Pagamentos.Domain.Entities.DomainEvents;
 using Pagamentos.Domain.Exceptions;
 
 namespace Pagamentos.Domain.Entities;
 
-public class Pagamento : Entity, IAggregateRoot{
-    private static readonly ImmutableDictionary<MetodoDePagamento, MetodoDePagamento[]> MetodosDePagamentosObrigatorios = new Dictionary<MetodoDePagamento, MetodoDePagamento[]>
-        {
-        { MetodoDePagamento.Cartao, [MetodoDePagamento.Master, MetodoDePagamento.Visa] },
-        { MetodoDePagamento.Pix, [] }
-    }
-    .ToImmutableDictionary();
+public class Pagamento : Entity, IAggregateRoot
+{
+    private static readonly ImmutableDictionary<MetodoDePagamento, MetodoDePagamento[]>
+        MetodosDePagamentosObrigatorios = new Dictionary<MetodoDePagamento, MetodoDePagamento[]>
+            {
+                { MetodoDePagamento.Cartao, [MetodoDePagamento.Master, MetodoDePagamento.Visa] },
+                { MetodoDePagamento.Pix, [] }
+            }
+            .ToImmutableDictionary();
 
     public const int Parcelas = 1;
 
-    protected Pagamento() { }
+    protected Pagamento()
+    {
+    }
 
     [JsonConstructor]
-    public Pagamento(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal, string? pagamentoExternoId)
+    public Pagamento(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal,
+        string? pagamentoExternoId)
     {
         ValidationDomain(id, pedidoId, metodoDePagamento, valorTotal);
 
@@ -30,7 +36,9 @@ public class Pagamento : Entity, IAggregateRoot{
     }
 
     public Pagamento(Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal, string? pagamentoExternoId)
-    : this(Guid.NewGuid(), pedidoId, metodoDePagamento, valorTotal, pagamentoExternoId) { }
+        : this(Guid.NewGuid(), pedidoId, metodoDePagamento, valorTotal, pagamentoExternoId)
+    {
+    }
 
     public Guid PedidoId { get; init; }
     public string? PagamentoExternoId { get; private set; }
@@ -44,8 +52,11 @@ public class Pagamento : Entity, IAggregateRoot{
 
     public void FinalizarPagamento(bool autorizado)
     {
-        DomainExceptionValidation.When(Status != StatusPagamento.Pendente, $"Pagamento só pode ser confirmado quando o status atual é {StatusPagamento.Pendente}");
+        DomainExceptionValidation.When(Status != StatusPagamento.Pendente,
+            $"Pagamento só pode ser confirmado quando o status atual é {StatusPagamento.Pendente}");
         Status = autorizado ? StatusPagamento.Autorizado : StatusPagamento.Rejeitado;
+
+        RaiseEvent(new PagamentoConfirmadoDomainEvent(Id));
     }
 
     public void AssociarPagamentoExterno(string pagamentoExternoId, string urlPagamento)
@@ -54,13 +65,15 @@ public class Pagamento : Entity, IAggregateRoot{
         UrlPagamento = urlPagamento;
     }
 
-    private static void ValidationDomain(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento, decimal valorTotal/*,string pagamentoExternoId*/)
+    private static void ValidationDomain(Guid id, Guid pedidoId, MetodoDePagamento metodoDePagamento,
+        decimal valorTotal /*,string pagamentoExternoId*/)
     {
         DomainExceptionValidation.When(id == Guid.Empty, "Id inválido");
         DomainExceptionValidation.When(pedidoId == Guid.Empty, "Pedido inválido");
         DomainExceptionValidation.When(Enum.IsDefined(metodoDePagamento) is false, "Método de pagamento inválido");
         DomainExceptionValidation.When(valorTotal < 0, "Valor total inválido");
-        DomainExceptionValidation.When(ValidationMetodoDePagamentoCartao(metodoDePagamento) is false, "Método de pagamento inválido");
+        DomainExceptionValidation.When(ValidationMetodoDePagamentoCartao(metodoDePagamento) is false,
+            "Método de pagamento inválido");
     }
 
     private static bool ValidationMetodoDePagamentoCartao(MetodoDePagamento metodoDePagamento)

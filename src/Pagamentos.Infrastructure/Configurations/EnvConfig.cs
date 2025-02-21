@@ -9,6 +9,7 @@ public static class EnvConfig
     public static string PagamentoFornecedorAccessToken => EnvConfigValueGetter.GetString("PAGAMENTO_FORNECEDOR_ACCESS_TOKEN");
     public static string DistributedCacheUrl => EnvConfigValueGetter.MustGetString("DISTRIBUTED_CACHE_URL");
     public static bool RunMigrationsOnStart => EnvConfigValueGetter.GetBool("RUN_MIGRATIONS_ON_START");
+    public static string PedidosApiUrl => EnvConfigValueGetter.MustGetString("PEDIDOS_API_URL");
 
     private static class EnvConfigValueGetter
     {
