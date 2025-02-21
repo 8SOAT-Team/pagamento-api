@@ -17,8 +17,7 @@ public static class GatewayService
 {
     public static IServiceCollection AddGateways(this IServiceCollection services)
     {
-        services.AddScoped<IPagamentoGateway, PagamentoGateway>()
-            .DecorateIf<IPagamentoGateway, PagamentoGatewayCache>(() => !EnvConfig.IsTestEnv);
+        services.AddScoped<IPagamentoGateway, PagamentoGateway>();
 
         services.AddScoped<IPedidoGateway, PedidoGateway>();
         services.AddPedidosApi();

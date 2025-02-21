@@ -74,7 +74,7 @@ jobs:
     needs: test-and-coverage-with-report  # Só executa se os testes passarem
     env:
       ASPNETCORE_ENVIRONMENT: "Test"
-      DISTRIBUTED_CACHE_URL: "redis://localhost:6379"
+      DISTRIBUTED_CACHE_URL: "soat-cache.uwgp5c.ng.0001.use1.cache.amazonaws.com:6379"
       RUN_MIGRATIONS_ON_START: "true"
       PAGAMENTO_WEBHOOK_URL: "http://localhost:5271"
       PAGAMENTO_FORNECEDOR_ACCESS_TOKEN: "TEST"
