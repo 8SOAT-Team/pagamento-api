@@ -10,8 +10,8 @@ jobs:
   test-and-coverage-with-report:
     runs-on: ubuntu-latest
     env:
-      ASPNETCORE_ENVIRONMENT: "Test"
-      DISTRIBUTED_CACHE_URL: "redis://localhost:6379"
+      ASPNETCORE_ENVIRONMENT: "test"
+      DISTRIBUTED_CACHE_URL: "soat-cache.uwgp5c.ng.0001.use1.cache.amazonaws.com:6379"
       RUN_MIGRATIONS_ON_START: "true"
       PAGAMENTO_WEBHOOK_URL: "http://localhost:5271"
       PAGAMENTO_FORNECEDOR_ACCESS_TOKEN: "TEST"
@@ -72,6 +72,12 @@ jobs:
   build-push-deploy:
     runs-on: ubuntu-latest
     needs: test-and-coverage-with-report  # Só executa se os testes passarem
+    env:
+      ASPNETCORE_ENVIRONMENT: "Test"
+      DISTRIBUTED_CACHE_URL: "redis://localhost:6379"
+      RUN_MIGRATIONS_ON_START: "true"
+      PAGAMENTO_WEBHOOK_URL: "http://localhost:5271"
+      PAGAMENTO_FORNECEDOR_ACCESS_TOKEN: "TEST"
 
     steps:
       - name: Checkout repository
