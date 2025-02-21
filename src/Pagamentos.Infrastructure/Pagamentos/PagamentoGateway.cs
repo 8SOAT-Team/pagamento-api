@@ -14,9 +14,9 @@ public class PagamentoGateway(PagamentoContext dbContext) : IPagamentoGateway
         return pagamento;
     }
 
-    public Task<List<Pagamento>> FindPagamentoByPedidoIdAsync(Guid pedidoId)
+    public async Task<List<Pagamento>> FindPagamentoByPedidoIdAsync(Guid pedidoId)
     {
-        return dbContext.Pagamentos.Where(p => p.PedidoId == pedidoId).ToListAsync();
+        return await dbContext.Pagamentos.Where(p => p.PedidoId == pedidoId).ToListAsync();
     }
 
     public Task<Pagamento?> GetByIdAsync(Guid id)

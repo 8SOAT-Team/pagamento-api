@@ -25,9 +25,15 @@ builder.Services.AddUseCaseControllers()
     .AddCacheService()
     .ConfigureJsonSerialization();
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger();
+builder.Services.AddLogging(logBuilder =>
+{
+    logBuilder.AddSerilog(new LoggerConfiguration()
+        .WriteTo
+        .Async(config => config.Console())
+        .CreateLogger());
+});
+
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -47,8 +53,6 @@ app.UseSwaggerUI(options =>
 
 app.AddEndpointPagamentos();
 app.AddEndpointWebhook();
-
-app.MapGet("/health", () => Results.Ok("Healthy"));
 
 app.Run();
 

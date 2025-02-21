@@ -9,7 +9,10 @@ public class PedidoGateway(IPedidoApi pedidoApi) : IPedidoGateway
 {
     public async Task AtualizaStatusPagamentoAsync(Guid pedidoId, StatusPagamento status)
     {
-        await pedidoApi.AtualizaPedidoStatusPagamento(pedidoId,
-            new AtualizaPedidoStatusPagamentoRequest(status.ToStatusPagamento()));
+        var request = new AtualizaPedidoStatusPagamentoRequest
+        {
+            Status = status.ToStatusPagamento()
+        };
+        await pedidoApi.AtualizaPedidoStatusPagamento(pedidoId,request);
     }
 }
