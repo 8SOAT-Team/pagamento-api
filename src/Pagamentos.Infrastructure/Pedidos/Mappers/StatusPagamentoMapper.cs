@@ -8,8 +8,8 @@ public static class StatusPagamentoMapper
     public static StatusPagamento ToStatusPagamento(this DomainStatusPagamento status) => status switch
     {
         DomainStatusPagamento.Pendente => StatusPagamento.Pendente,
-        DomainStatusPagamento.Autorizado => StatusPagamento.Aprovado,
-        DomainStatusPagamento.Rejeitado or DomainStatusPagamento.Cancelado => StatusPagamento.Recusado,
+        DomainStatusPagamento.Autorizado => StatusPagamento.Autorizado,
+        DomainStatusPagamento.Rejeitado or DomainStatusPagamento.Cancelado => StatusPagamento.Rejeitado,
         _ => throw new Exception("Status de pagamento não suportado")
     };
 }
