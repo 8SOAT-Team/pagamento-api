@@ -1,13 +1,71 @@
-name: Build, Push and Deploy
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
+      - feat/coverage
 
 jobs:
-  build:
+  test-and-coverage-with-report:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore Pagamento.sln
+
+      - name: Build project
+        run: dotnet build Pagamento.sln --configuration Release
+
+      - name: Test
+        run: dotnet test Pagamento.sln -c Release --no-build --no-restore --verbosity normal -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --environment Test -p:Exclude="[Pagamentos.Infrastructure?]*"
+
+      - name: Create Test Coverage Badge
+        uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+        id: create_coverage_badge
+        with:
+          label: Unit Test Coverage
+          color: brightgreen
+          path: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
+          gist-filename: pagamento-code-coverage.json
+          gist-id: 70638427f9d50f6334e3d96af10f43a9
+          gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
+
+      - name: Print code coverage
+        run: echo "Code coverage percentage ${{ steps.create_coverage_badge.outputs.percentage }}%"
+
+      - name: Print badge data
+        run: echo "Badge data ${{ steps.create_coverage_badge.outputs.badge }}"
+
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: ReportGenerator
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.4.3
+        with:
+          reports: ./test/Pagamentos.Tests/TestResults/coverage.opencover.xml
+          targetdir: coveragereport
+          reporttypes: Html_Dark;Badges
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: ./coveragereport
+
+  build-push-deploy:
+    runs-on: ubuntu-latest
+    needs: test-and-coverage-with-report  # Só executa se os testes passarem
 
     steps:
       - name: Checkout repository
@@ -17,6 +75,7 @@ jobs:
 
       - name: Debug - Listando arquivos na API
         run: ls -R src/Pagamentos.Api
+
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
@@ -54,16 +113,8 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/pagamentos-api:${{ github.sha }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Install kubectl
-        run: | 
+        run: |
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
