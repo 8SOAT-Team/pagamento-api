@@ -11,4 +11,4 @@ data:
   RUN_MIGRATIONS_ON_START: "true"
   PAGAMENTO_WEBHOOK_URL: "https://fast-order-mp.free.beeceptor.com/"
   PAGAMENTO_FORNECEDOR_ACCESS_TOKEN: "TEST-519600520864773-101020-3f979789d2b40227c2bbc32226015aba-223156837"
-  PEDIDOS_API_URL: "http://a920dbb0fb6e743aaa147aa12332912f-662498383.us-east-1.elb.amazonaws.com"
+  PEDIDOS_API_URL: "http://pedidos-api-svc.fast-order.svc.cluster.local:80"  # 🔹 Chamada interna via Service do Kubernetes
