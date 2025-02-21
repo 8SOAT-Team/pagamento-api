@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using Pagamentos.Adapters.Gateways;
-using Pagamentos.Adapters.Types;
+using Pagamentos.Apps.Types;
 using StackExchange.Redis;
 
 namespace Pagamentos.Infrastructure.Databases;

@@ -3,7 +3,8 @@ using CleanArch.UseCase.Options;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Pagamentos.Adapters.Controllers;
-using Pagamentos.Adapters.Types;
+using Pagamentos.Apps.Handlers;
+using Pagamentos.Apps.Types;
 using Pagamentos.Apps.UseCases;
 using Pagamentos.Apps.UseCases.Dtos;
 using Pagamentos.Domain.Entities;
@@ -16,6 +17,7 @@ public class PagamentoControllerTests
     private readonly Mock<ILoggerFactory> _mockLogger;
     private readonly Mock<IPagamentoGateway> _mockPagamentoGateway;
     private readonly Mock<IFornecedorPagamentoGateway> _mockFornecedorPagamentoGateway;
+    private readonly Mock<IPagamentoHandler> _pagamentoHandler;
     private readonly PagamentoController _controller;
     private readonly Faker _faker = new();
 
@@ -24,8 +26,9 @@ public class PagamentoControllerTests
         _mockLogger = new Mock<ILoggerFactory>();
         _mockPagamentoGateway = new Mock<IPagamentoGateway>();
         _mockFornecedorPagamentoGateway = new Mock<IFornecedorPagamentoGateway>();
+        _pagamentoHandler = new Mock<IPagamentoHandler>();
         _controller = new PagamentoController(_mockLogger.Object, _mockPagamentoGateway.Object,
-            _mockFornecedorPagamentoGateway.Object);
+            _mockFornecedorPagamentoGateway.Object, _pagamentoHandler.Object);
     }
 
     [Fact]
@@ -43,8 +46,7 @@ public class PagamentoControllerTests
 
         _mockLogger.Setup(x => x.CreateLogger(typeof(ConfirmarPagamentoUseCase).FullName!))
             .Returns(new Mock<ILogger<ConfirmarPagamentoUseCase>>().Object);
-
-
+        
         // Act
         var result = await _controller.ConfirmarPagamento(pagamentoId, status);
 

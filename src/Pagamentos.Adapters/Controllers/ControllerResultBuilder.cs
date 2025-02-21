@@ -2,7 +2,7 @@
 using CleanArch.UseCase.Faults;
 using CleanArch.UseCase.Options;
 using Pagamentos.Adapters.Presenters;
-using Pagamentos.Adapters.Types;
+using Pagamentos.Apps.Types;
 
 namespace Pagamentos.Adapters.Controllers;
 

@@ -1,7 +1,8 @@
 ﻿using Pagamentos.Apps.UseCases;
 using Pagamentos.Apps.UseCases.Dtos;
 using Pagamentos.Adapters.Presenters;
-using Pagamentos.Adapters.Types;
+using Pagamentos.Apps.Handlers;
+using Pagamentos.Apps.Types;
 using Pagamentos.Domain.Entities;
 
 namespace Pagamentos.Adapters.Controllers;
@@ -9,7 +10,8 @@ namespace Pagamentos.Adapters.Controllers;
 public class PagamentoController(
     ILoggerFactory loggerFactory,
     IPagamentoGateway pagamentoGateway,
-    IFornecedorPagamentoGateway fornecedorPagamentoGateway) : IPagamentoController
+    IFornecedorPagamentoGateway fornecedorPagamentoGateway,
+    IPagamentoHandler pagamentoHandler) : IPagamentoController
 {
     public async Task<Result<PagamentoResponseDto>> ConfirmarPagamento(Guid pagamentoId, StatusDoPagamento status)
     {
@@ -57,7 +59,7 @@ public class PagamentoController(
     {
         var useCase =
             new ConfirmarStatusPagamentoUseCase(loggerFactory.CreateLogger<ConfirmarStatusPagamentoUseCase>(),
-                fornecedorPagamentoGateway, pagamentoGateway);
+                fornecedorPagamentoGateway, pagamentoGateway, pagamentoHandler);
         var useCaseResult = await useCase.ResolveAsync(pagamentoExternoId);
 
         return ControllerResultBuilder<PagamentoResponseDto, Pagamento>

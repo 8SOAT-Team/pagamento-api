@@ -1,5 +1,5 @@
 ﻿using CleanArch.UseCase.Faults;
-using Pagamentos.Adapters.Types;
+using Pagamentos.Apps.Types;
 
 namespace Pagamentos.Adapters.Presenters;
 public static class UseCasePresenter

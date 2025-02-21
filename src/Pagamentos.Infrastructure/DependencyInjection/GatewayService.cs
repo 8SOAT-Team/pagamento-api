@@ -3,9 +3,13 @@ using MercadoPago.Client.Preference;
 using MercadoPago.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Pagamentos.Adapters.Gateways;
+using Pagamentos.Apps.Gateways;
 using Pagamentos.Apps.UseCases;
 using Pagamentos.Infrastructure.Configurations;
 using Pagamentos.Infrastructure.Pagamentos;
+using Pagamentos.Infrastructure.Pedidos.Gateways;
+using Pagamentos.Infrastructure.Pedidos.WebApis;
+using Refit;
 
 namespace Pagamentos.Infrastructure.DependencyInjection;
 
@@ -16,6 +20,9 @@ public static class GatewayService
         services.AddScoped<IPagamentoGateway, PagamentoGateway>()
             .DecorateIf<IPagamentoGateway, PagamentoGatewayCache>(() => !EnvConfig.IsTestEnv);
 
+        services.AddScoped<IPedidoGateway, PedidoGateway>();
+        services.AddPedidosApi();
+        
         return services;
     }
 
@@ -30,5 +37,11 @@ public static class GatewayService
         services.AddSingleton<PreferenceClient>();
 
         return services;
+    }
+
+    private static void AddPedidosApi(this IServiceCollection services)
+    {
+        services.AddRefitClient<IPedidoApi>()
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(EnvConfig.PedidosApiUrl));
     }
 }

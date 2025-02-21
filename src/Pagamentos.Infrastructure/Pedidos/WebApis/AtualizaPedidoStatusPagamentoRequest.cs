@@ -1,0 +1,3 @@
+namespace Pagamentos.Infrastructure.Pedidos.WebApis;
+
+public record AtualizaPedidoStatusPagamentoRequest(StatusPagamento Status);

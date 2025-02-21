@@ -1,4 +1,4 @@
-﻿namespace Pagamentos.Adapters.Types;
+﻿namespace Pagamentos.Apps.Types;
 
 public class StatusConst
 {
